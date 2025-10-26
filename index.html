@@ -163,26 +163,15 @@ const samplePrograms = [
     description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
     assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
     notes: "No social engineering. No DDoS."
-  },
-  {
-    id: "nova",
-    name: "Nova Retail",
-    description: "E-commerce infrastructure. Priority: data exposure & payment flow issues.",
-    assets: "",
-    notes: "Avoid production load testing; standard disclosure window 14 days."
-  },
-  {
-    id: "atlas",
-    name: "Atlas IoT",
-    description: "IoT hardware and firmware testing allowed on listed devices.",
-    assets: "",
-    notes: "Coordinate before any hardware-level exploitation."
   }
+  
 ];
 
 function telegramShareUrl(text){
-  return `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
+  return `https://t.me/username?text=${encodeURIComponent(this.samplePrograms.id)}`;
 }
+
+https://t.me/username
 
 /* Render partner programs */
 const programsEl = document.getElementById("programs");
