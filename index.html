@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Private Bug Bounty Hub</title>
+<title>Private Bug Bounty Hub — Fixed</title>
 
 <style>
   /* === brand style === */
@@ -95,13 +95,13 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         Private Bug Bounty
       </div>
       <nav>
         <a href="#how">How It Works</a>
         <a href="#programs">Programs</a>
-        <a id="report-cta" class="cta" href="#" target="_blank">Report via Telegram</a>
+        <a id="report-cta" class="cta" href="#" target="_blank" rel="noopener noreferrer">Report via Telegram</a>
       </nav>
     </div>
   </header>
@@ -112,7 +112,7 @@
       <p>Choose a program, read the scope, and report directly via Telegram.</p>
       <div class="actions">
         <a href="#programs" class="btn">View Programs</a>
-        <a id="quick-report" class="btn" href="#" target="_blank">Quick Report</a>
+        <a id="quick-report" class="btn" href="#" target="_blank" rel="noopener noreferrer">Quick Report</a>
       </div>
     </section>
 
@@ -139,13 +139,11 @@
 
     <footer>
         <small>Submit responsibly. Sensitive data should be shared encrypted.</small>
-<br>
-<br>
+<br><br>
       Private Bug Bounty • Created by <strong>Oliver Maicher</strong>.
-                <br>
-      
-      <a target="_blank" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
-<a target="_blank" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a></p>
+      <br>
+      <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
     </footer>
   </main>
 
@@ -155,7 +153,7 @@
   - Replace TELEGRAM_HANDLE with your Telegram username (without @)
   - Replace samplePrograms with your actual partner companies
 */
-const TELEGRAM_HANDLE = "maiosec"; // your Telegram username
+const TELEGRAM_HANDLE = "maiosec"; // your Telegram username (without @)
 const samplePrograms = [
   {
     id: "beroomie",
@@ -163,31 +161,26 @@ const samplePrograms = [
     description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
     assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
     notes: "No social engineering. No DDoS."
-  },
-   {
-    id: "beroomie",
-    name: "Beroomie.App",
-    description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
-    assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
-    notes: "No social engineering. No DDoS."
   }
-  
 ];
 
-function telegramShareUrl(text){
-  return `https://t.me/username?text=${encodeURIComponent(this.samplePrograms.id)}`;
+function telegramShareUrl(text) {
+  // Use TELEGRAM_HANDLE and properly encode the prefilled text
+  const handle = String(TELEGRAM_HANDLE || "").replace(/^@/, "");
+  const base = handle ? `https://t.me/${handle}` : `https://t.me/`;
+  return `${base}?text=${encodeURIComponent(text)}`;
 }
-
-https://t.me/username
 
 /* Render partner programs */
 const programsEl = document.getElementById("programs");
+
 samplePrograms.forEach(p => {
   const wrap = document.createElement("div");
   wrap.className = "card program";
 
   const avatar = document.createElement("div");
   avatar.className = "avatar";
+  avatar.setAttribute('aria-hidden', 'true');
   avatar.textContent = p.name.split(" ").map(s=>s[0]).slice(0,2).join("").toUpperCase();
 
   const body = document.createElement("div");
@@ -245,10 +238,11 @@ samplePrograms.forEach(p => {
 
 /* Quick Report and Header CTA */
 const quickText = `[Report] Program: (company name)\nSeverity:\nSummary:\nPoC / Steps:\nContact:\n`;
-document.getElementById("quick-report").href = telegramShareUrl(quickText);
-document.getElementById("report-cta").href = telegramShareUrl(quickText);
+const quickReportEl = document.getElementById("quick-report");
+const headerCtaEl = document.getElementById("report-cta");
+if (quickReportEl) quickReportEl.href = telegramShareUrl(quickText);
+if (headerCtaEl) headerCtaEl.href = telegramShareUrl(quickText);
 </script>
-
 
 
 
