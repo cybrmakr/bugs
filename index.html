@@ -87,6 +87,24 @@
   .details { margin-top:10px; color:var(--muted); font-size:14px; display:none; }
   .details.open { display:block; }
 
+    .trust-box {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .trust-box .ava img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+    }
+
   footer { text-align:center; color:var(--muted); margin:40px 0 20px; font-size:13px; }
 </style>
 </head>
@@ -136,6 +154,17 @@
         Only test authorized assets, avoid data extraction or DoS. All submitted reports remain confidential.
       </p>
     </section>
+    
+ <!-- TRUST BOX BELOW -->
+    <div class="trust-box" id="about">
+      <div class="ava" aria-hidden="true">
+        <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
+      </div>
+      <div>
+        <h3>Created by Oliver Maicher</h3>
+        <small>Transparent process, fast responses, and global security expertise tailored for you.</small>
+      </div>
+    </div>
 
     <footer>
         <small>Submit responsibly. Sensitive data should be shared encrypted.</small>
