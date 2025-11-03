@@ -27,21 +27,6 @@
       --maxw: 1100px;
     }
 
-      /* @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f6f8fb;
-        --panel: #ffffff;
-        --text: #0e1116;
-        --muted: #5b6b7d;
-        --brand: #5b3eff;
-        --brand-2: #04b6a1;
-        --accent: #e88b14;
-        --danger: #e54848;
-        --ok: #17a36c;
-        --focus: #1aa3e8;
-      }
-    } */
-
     html,
     body {
       height: 100%;
@@ -258,6 +243,66 @@
       height: 72px;
       border-radius: 50%;
     }
+
+    /* BOUNTY TABLE STYLES */
+    .bounty-section {
+      margin: 60px auto;
+      max-width: 900px;
+      background: var(--panel);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .bounty-table-wrapper {
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    .bounty-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .bounty-table th,
+    .bounty-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid color-mix(in hsl, var(--muted), transparent 60%);
+    }
+
+    .bounty-table th {
+      background: color-mix(in hsl, var(--brand), transparent 85%);
+      color: var(--brand);
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .bounty-table tr:hover {
+      background: color-mix(in hsl, var(--brand-2), transparent 92%);
+    }
+
+    .reward {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .reward.critical {
+      color: var(--danger);
+    }
+
+    .reward.high {
+      color: var(--accent);
+    }
+
+    .reward.medium {
+      color: var(--brand-2);
+    }
+
+    .reward.low {
+      color: var(--muted);
+    }
   </style>
 </head>
 
@@ -280,7 +325,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <p></p>
       <h1 id="hero-title">Certified Cyber Security </h1>
-<p>Need a cybersecurity certification for clients or investors?</p>
+      <p>Need a cybersecurity certification for clients or investors?</p>
       <div class="actions">
         <a class="btn cta" href="#offer">See Our Offer</a>
         <a class="btn" href="#about">Learn About Us</a>
@@ -291,18 +336,17 @@
     <section class="pricing-section" id="offer" aria-labelledby="offer-title">
       <h2 style="text-align:center;" id="offer-title">Choose Your Monthly Plan</h2>
 
-<br>
+      <br>
       <div class="pricing">
 
-<div class="price-card">
+        <div class="price-card">
           <h3>Premium</h3>
           <p>Managed Bounty Services for Enterprise</p>
           <div class="price">999€ / month</div>
           <p>+ fee according vulnerability table</p>
-                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank"
+            rel="noopener noreferrer">Contact</a>
         </div>
-        
-       
 
         <div class="price-card highlight">
           <h3>Basic</h3>
@@ -310,27 +354,73 @@
           </p>
           <div class="price">99€ / month</div>
           <p>+ fee according to vulnerability table</p>
-                    <p></p>
+          <p></p>
 
-                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank"
+            rel="noopener noreferrer">Contact</a>
         </div>
 
-         <div class="price-card">
+        <div class="price-card">
           <h3>Always-free</h3>
           <p>Perfect to try out, risk-free.</p>
           <div class="price">0€ / month</div>
           <p>+ fee according to vulnerability table</p>
           <p>Unmanaged service.</p>
-                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank"
+            rel="noopener noreferrer">Contact</a>
         </div>
-        
+
+      </div>
+    </section>
+
+    <!-- BOUNTY SIZE TABLE -->
+    <section class="bounty-section" aria-labelledby="bounty-title">
+      <h2 style="text-align:center;" id="bounty-title">Vulnerability Bounty Table</h2>
+      <p style="text-align:center; color: var(--muted);">
+        Researchers are rewarded per verified vulnerability based on impact level.
+      </p>
+
+      <div class="bounty-table-wrapper">
+        <table class="bounty-table">
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Description</th>
+              <th>Reward (€)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Critical</strong></td>
+              <td>Remote code execution, authentication bypass, major data leaks</td>
+              <td class="reward critical">1000 – 5000€</td>
+            </tr>
+            <tr>
+              <td><strong>High</strong></td>
+              <td>Privilege escalation, major access control issues</td>
+              <td class="reward high">500 – 1000€</td>
+            </tr>
+            <tr>
+              <td><strong>Medium</strong></td>
+              <td>Information disclosure, session handling issues</td>
+              <td class="reward medium">100 – 500€</td>
+            </tr>
+            <tr>
+              <td><strong>Low</strong></td>
+              <td>Minor misconfigurations, best-practice deviations</td>
+              <td class="reward low">0 – 100€</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
     <!-- TRUST BOX BELOW -->
     <div class="trust-box" id="about">
       <div class="avatar" aria-hidden="true">
-        <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
+        <img
+          src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png"
+          alt="Oliver Maicher" />
       </div>
       <div>
         <h3>Created by Oliver Maicher</h3>
@@ -340,8 +430,9 @@
 
     <footer>
       <p>© <span id="year"></span> Certified Cyber Security • Created by <strong>Oliver Maicher</strong>.
-                <a target="_blank" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
-<a target="_blank" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a></p> 
+        <a target="_blank" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
+        <a target="_blank" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
+      </p>
     </footer>
   </main>
 
