@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Certified Cyber Security • SaaS Cybersecurity</title>
+  <meta name="description"
+    content="Certified Cyber Security - Cybersecurity-as-a-Service for SaaS founders. Done-for-you monitoring, actionable reports, and compliance-ready protection." />
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111620;
+      --text: #e8eef6;
+      --muted: #b2c2d6;
+      --brand: #7c5cff;
+      --brand-2: #00d1b2;
+      --accent: #ffb454;
+      --danger: #ff5d5d;
+      --ok: #36d399;
+      --focus: #5ad1ff;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+      --maxw: 1100px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fb;
+        --panel: #ffffff;
+        --text: #0e1116;
+        --muted: #5b6b7d;
+        --brand: #5b3eff;
+        --brand-2: #04b6a1;
+        --accent: #e88b14;
+        --danger: #e54848;
+        --ok: #17a36c;
+        --focus: #1aa3e8;
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      background: linear-gradient(180deg, var(--bg), #0b0f14 60%);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(140%) blur(12px);
+      background: color-mix(in hsl, var(--bg), transparent 35%);
+      border-bottom: 1px solid color-mix(in hsl, var(--muted), transparent 70%);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: .3px;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: var(--text);
+      opacity: .85
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #fff !important;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      padding: 36px 0 8px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin: 0;
+      letter-spacing: .2px;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--panel);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
+    .pricing-section {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto 40px;
+    }
+
+    .pricing {
+      display: grid;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 800px) {
+      .pricing {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .price-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .price-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .price-card p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .price {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 16px 0;
+      color: var(--brand-2);
+    }
+
+    .highlight {
+      border: 2px solid var(--accent);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 180, 84, 0.5);
+      z-index: 1;
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-box {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .trust-box .avatar img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <header aria-label="Primary">
+    <div class="container nav">
+      <div class="brand" aria-label="Home">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Certified Cyber Security</span>
+      </div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#offer" class="cta">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <p></p>
+      <h1 id="hero-title">Certified Cyber Security </h1>
+<p>Need a cybersecurity certification for clients or investors?</p>
+      <div class="actions">
+        <a class="btn cta" href="#offer">See Our Offer</a>
+        <a class="btn" href="#about">Learn About Us</a>
+      </div>
+    </section>
+
+    <!-- PLAN SECTION -->
+    <section class="pricing-section" id="offer" aria-labelledby="offer-title">
+      <h2 style="text-align:center;" id="offer-title">Choose Your Monthly Plan</h2>
+
+<br>
+      <div class="pricing">
+
+<div class="price-card">
+          <h3>Premium</h3>
+          <p>Unlimited reporting for serious teams.</p>
+          <div class="price">999€ / month</div>
+          <p>Unlimited free vulnerability reports</p>
+                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+        </div>
+        
+       
+
+        <div class="price-card highlight">
+          <div class="badge">Most Popular</div>
+          <h3>Basic</h3>
+          <p>Improving security posture.
+          </p>
+          <div class="price">99€ / month</div>
+          <p>+ 100€ per valid vulnerability report</p>
+                    <p>(max. 5 reports / month)</p>
+
+                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+        </div>
+
+         <div class="price-card">
+          <h3>1€ for One Month </h3>
+          <p>Perfect to try out, risk-free.</p>
+          <div class="price">1€ / month</div>
+          <p>+ 1 free vulnerability report</p>
+          <p>(max. 1 report)</p>
+                  <a class="btn cta" href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" rel="noopener noreferrer">Contact</a>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- TRUST BOX BELOW -->
+    <div class="trust-box" id="about">
+      <div class="avatar" aria-hidden="true">
+        <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
+      </div>
+      <div>
+        <h3>Created by Oliver Maicher</h3>
+        <small>Transparent process, fast responses, and global security expertise tailored for you.</small>
+      </div>
+    </div>
+
+    <footer>
+      <p>© <span id="year"></span> Certified Cyber Security • Created by <strong>Oliver Maicher</strong>.
+                <a target="_blank" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
+<a target="_blank" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a></p> 
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
