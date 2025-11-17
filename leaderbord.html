@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leaderboard • Private Bug Bounty</title>
+
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #111620;
+    --text: #e8eef6;
+    --muted: #b2c2d6;
+    --brand: #7c5cff;
+    --brand-2: #00d1b2;
+    --accent: #ffb454;
+    --danger: #ff5d5d;
+    --ok: #36d399;
+    --focus: #5ad1ff;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+    --maxw: 800px;
+  }
+
+  body {
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg), #0b0f14 60%);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+  }
+
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h1 {
+    margin: 0 0 20px;
+    text-align: center;
+    font-size: clamp(26px, 4vw, 38px);
+  }
+
+  .card {
+    background: var(--panel);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  /* === Leaderboard === */
+  .lb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .lb-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--panel);
+    padding: 16px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lb-rank {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .lb-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lb-name {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .lb-score {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Leaderboard</h1>
+
+    <section class="card">
+      <h2 style="margin:0 0 10px;">Top Researchers</h2>
+      <div id="lb-list" class="lb-list"></div>
+    </section>
+
+    <footer>
+      Private Bug Bounty • Created by <strong>Oliver Maicher</strong>
+    </footer>
+  </main>
+
+<script>
+/* === Leaderboard Data (edit easily) === */
+const leaderboard = [
+  { name: "Alice", points: 320 },
+  { name: "ZeroDayFox", points: 260 },
+  { name: "r3dHunt3r", points: 190 },
+  { name: "Nova", points: 120 }
+];
+
+/* === Render Leaderboard === */
+const lbEl = document.getElementById("lb-list");
+
+leaderboard.forEach((user, i) => {
+  const row = document.createElement("div");
+  row.className = "lb-item";
+
+  row.innerHTML = `
+    <div class="lb-rank">${i + 1}</div>
+    <div class="lb-body">
+      <div class="lb-name">${user.name}</div>
+      <div class="lb-score">${user.points} pts</div>
+    </div>
+  `;
+
+  lbEl.appendChild(row);
+});
+</script>
+
+</body>
+</html>
