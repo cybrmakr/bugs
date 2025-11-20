@@ -142,7 +142,7 @@
     <section id="how" class="card" style="margin-top:26px;">
       <h2 style="margin:0 0 8px;">How It Works</h2>
       <p style="margin:0;color:var(--muted);line-height:1.6;">
-        1️⃣ Pick a partner company’s program below.<br>
+        1️⃣ Pick a company’s program below.<br>
         2️⃣ Check its allowed targets and short rules.<br>
         3️⃣ Click <strong>Report</strong>,  Telegram opens.<br>
         4️⃣ Add vulnerability details, PoC, and your contact. Send. Done.
@@ -206,7 +206,15 @@
 */
 const TELEGRAM_HANDLE = "maiosec"; // your Telegram username (without @)
 const samplePrograms = [
+
+  
   {
+    id: "roatel",
+    name: "Roatel",
+    description: "Micro-hotels close to roads.",
+    assets: "https://www.roatel.com/",
+    notes: "All domains of Roatel. No social engineering. No DDoS."
+  },{
     id: "avatar-ux",
     name: "AvatarUX",
     description: "A gaming software provider.",
