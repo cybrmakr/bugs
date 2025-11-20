@@ -199,13 +199,9 @@
   </main>
 
 <script>
-/*
-  CONFIG
-  - Replace TELEGRAM_HANDLE with your Telegram username (without @)
-  - Replace samplePrograms with your actual partner companies
-*/
+
 const TELEGRAM_HANDLE = "maiosec"; // your Telegram username (without @)
-const samplePrograms = [
+const programs = [
   {
     id: "inwx",
     name: "INWX",
@@ -274,7 +270,7 @@ function telegramShareUrl(text) {
 /* Render partner programs */
 const programsEl = document.getElementById("programs");
 
-samplePrograms.forEach(p => {
+programs.forEach(p => {
   const wrap = document.createElement("div");
   wrap.className = "card program";
 
