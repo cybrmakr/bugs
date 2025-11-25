@@ -173,7 +173,7 @@
     <section class="card" style="text-align:center;margin-top:26px;">
       <h3 style="margin:0 0 8px;">Security Guidelines</h3>
       <p style="margin:0;color:var(--muted);line-height:1.6;">
-        Only test authorized assets, avoid data extraction or DoS. All submitted reports remain confidential.
+        Only test authorized assets, avoid data extraction or DoS, preferably High and Critical vulnerabilities. All submitted reports remain confidential.
       </p>
     </section>
     
@@ -184,7 +184,7 @@
       </div>
       <div>
         <h3>Created by Oliver Maicher</h3>
-        <small>Transparent process, fast responses, and global security expertise tailored for you.</small>
+        <small>Fast responses and global security expertise tailored for you.</small>
       </div>
     </div>
 
@@ -203,6 +203,12 @@
 const TELEGRAM_HANDLE = "maiosec"; // your Telegram username (without @)
 const programs = [
   {
+    id: "gop",
+    name: "GOP Varieté-Theater",
+    description: "Varieté theatres and Ticket Booking",
+    assets: "variete.de, tixu-shop.variete.de, tixu.io",
+    notes: "No social engineering. No DDoS."
+  },{
     id: "bws",
     name: "Baden-Württemberg Stiftung",
     description: "Baden-Württemberg Foundation.",
