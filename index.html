@@ -23,25 +23,26 @@
     --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
     --maxw: 1100px;
   }
-    
+
   @media (prefers-color-scheme: light) {
     :root {
-    --bg: #0b0f14;
-    --panel: #111620;
-    --text: #e8eef6;
-    --muted: #b2c2d6;
-    --brand: #7c5cff;
-    --brand-2: #00d1b2;
-    --accent: #ffb454;
-    --danger: #ff5d5d;
-    --ok: #36d399;
-    --focus: #5ad1ff;
-    --radius: 16px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-    --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
-    --maxw: 1100px;
+      --bg: #0b0f14;
+      --panel: #111620;
+      --text: #e8eef6;
+      --muted: #b2c2d6;
+      --brand: #7c5cff;
+      --brand-2: #00d1b2;
+      --accent: #ffb454;
+      --danger: #ff5d5d;
+      --ok: #36d399;
+      --focus: #5ad1ff;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+      --maxw: 1100px;
     }
-  } 
+  }
+
   html,body { height:100%; }
   body{
     margin:0;
@@ -63,6 +64,7 @@
   .logo{ width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:var(--shadow-sm); }
   .nav a{ padding:8px 12px; border-radius:999px; font-weight:600; color:var(--text); opacity:.9; }
   .cta{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff !important; box-shadow:var(--shadow-sm); }
+
   .hero{ display:grid; gap:10px; padding:30px 0 8px; text-align:center; }
   .hero h1{ font-size:clamp(28px,5vw,40px); margin:0; }
   .hero p{ color:var(--muted); margin:0; font-size:16px; }
@@ -82,9 +84,10 @@
     display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;
   }
   .prog-body { flex:1; min-width:0; }
-  .prog-head { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+  .prog-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
   .prog-title { font-size:18px; margin:0; }
   .prog-sub { color:var(--muted); font-size:13px; margin-top:4px; }
+
   .small { padding:8px 10px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; border:0; background:transparent; color:var(--text); box-shadow:none; }
   .outline { border:1px solid color-mix(in hsl,var(--muted), transparent 80%); }
   .danger { background: linear-gradient(135deg,var(--danger),#ff7b7b); color:#fff; box-shadow:var(--shadow-sm); }
@@ -92,7 +95,19 @@
   .details { margin-top:10px; color:var(--muted); font-size:14px; display:none; }
   .details.open { display:block; }
 
-    .trust-box {
+  /* STATUS DOTS */
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .status-active { background: var(--ok); }
+  .status-unconfirmed { background: var(--accent); }
+  .status-paused { background: var(--danger); }
+
+  .trust-box {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
@@ -108,7 +123,26 @@
       width: 72px;
       height: 72px;
       border-radius: 50%;
-    }
+  }
+
+  .btn-notify {
+  display: inline-block;
+  padding: 12px 22px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--accent), var(--brand));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-notify:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
 
   footer { text-align:center; color:var(--muted); margin:40px 0 20px; font-size:13px; }
 </style>
@@ -154,21 +188,20 @@
     </section>
 
     <section class="card" style="text-align:center;margin-top:26px;">
-  <h3 style="margin:0 0 8px;">Get Notified About Updates</h3>
-  <p style="margin:0;color:var(--muted);line-height:1.6;">
-    Want to stay in the loop when new programs or changes go live?
-  </p>
-  <a 
-    href="https://mail.olivermaicher.eu" 
-    class="btn" 
-    style="margin-top:14px;display:inline-block;"
-    target="_blank" 
-    rel="noopener noreferrer"
-  >
-    Notify Me
-  </a>
-</section>
+      <h3 style="margin:0 0 8px;">Get Notified About Updates</h3>
+      <p style="margin:0;color:var(--muted);line-height:1.6;">
+        Want to stay in the loop when new programs or changes go live?
+      </p>
+   <a 
+  href="https://mail.olivermaicher.eu" 
+  class="btn-notify"
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  🔔 Notify Me
+</a>
 
+    </section>
 
     <section class="card" style="text-align:center;margin-top:26px;">
       <h3 style="margin:0 0 8px;">Security Guidelines</h3>
@@ -176,8 +209,7 @@
         Only test authorized assets, avoid data extraction or DoS, preferably High and Critical vulnerabilities. All submitted reports remain confidential.
       </p>
     </section>
-    
- <!-- TRUST BOX BELOW -->
+
     <div class="trust-box" id="about">
       <div class="ava" aria-hidden="true">
         <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
@@ -190,115 +222,126 @@
 
     <footer>
         <small>Submit responsibly. Sensitive data should be shared encrypted.</small>
-<br><br>
-      Private Bug Bounty • Created by <strong>Oliver Maicher</strong>.
-      <br>
-      <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
-      <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
+        <br><br>
+        Private Bug Bounty • Created by <strong>Oliver Maicher</strong>.
+        <br>
+        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
     </footer>
   </main>
 
 <script>
 
-const TELEGRAM_HANDLE = "maiosec"; // your Telegram username (without @)
+const TELEGRAM_HANDLE = "maiosec";
+
 const programs = [
     {
-    id: "avatarux",
-    name: "AvatarUX",
-    description: "Online slot machine creators.",
-    assets: "avatarux.com",
-    status: "active",
-    notes: "Vulnerabilities that create financial damage (e.g. cheating games) will be rewarded. No social engineering. No DDoS."
-  },{    
-    id: "mynfp",
-    name: "myNFP",
-    description: "Period application.",
-    assets: "Android + iOS apps, mynfp.de",
-    status: "unconfirmed",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "kassenkompass",
-    name: "KassenKompass",
-    description: "German public health insurance comparison.",
-    assets: "kassenkompass.de",
-    status: "unconfirmed",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "gop",
-    name: "GOP Varieté-Theater",
-    description: "Varieté theatres and Ticket Booking",
-    assets: "variete.de, tixu-shop.variete.de, tixu.io",
-    status: "unconfirmed",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "bws",
-    name: "Baden-Württemberg Stiftung",
-    description: "Baden-Württemberg Foundation.",
-    assets: "bws-world.de, bw-stipendium.de",
-    status: "unconfirmed",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "inwx",
-    name: "INWX",
-    description: "Domain registrar.",
-    assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
-    status: "unconfirmed",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "aldi-nord",
-    name: "ALDI Nord",
-    description: "Discounter Supermarket.",
-    assets: "https://www.aldi-nord.de/",
-    status: "unconfirmed",
-    notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
-  },{
-    id: "roatel",
-    name: "Roatel",
-    description: "Micro-hotels close to roads.",
-    assets: "https://www.roatel.com/",
-    status: "unconfirmed",
-    notes: "All domains of Roatel. No social engineering. No DDoS."
-  },{
-    id: "wizard-games",
-    name: "Wizard Games",
-    description: "Complete suite of casino games.",
-    assets: "https://wizard.games",
-    status: "unconfirmed",
-    notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
-  },{
-    id: "bragg-group",
-    name: "BRAGG Group",
-    description: "National full-service iGaming content and technology solutions provider to the worldwide gambling industry.",
-    assets: "https://bragg.group/solutions/casino-content/studios/",
-    status: "unconfirmed",
-    notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
-  },{
-    id: "mindboost",
-    name: "mindboost",
-    description: "Concentration Improvement Platform — Web App only. Rewards by severity.",
-    assets: "https://mindboost.app",
-    status: "paused",
-    notes: "No social engineering. No DDoS."
-  },{
-    id: "beroomie",
-    name: "Beroomie.App",
-    description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
-    assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
-    status: "paused",
-    notes: "No social engineering. No DDoS."
-  },
-   {
-    id: "belgium-cvd",
-    name: "Belgium-assigned IP addresses",
-    description: "Test anything on IP addresses of Belgium, stick to Coordinated Vulnerability Disclosure (CVD). Report with us and we will help you get bounties paid.",
-    assets: "https://lite.ip2location.com/belgium-ip-address-ranges",
-    status: "active",
-    notes: "No social engineering. No DDoS."
-  }
+        id: "avatarux",
+        name: "AvatarUX",
+        description: "Online slot machine creators.",
+        assets: "avatarux.com",
+        status: "active",
+        notes: "Vulnerabilities that create financial damage (e.g. cheating games) will be rewarded. No social engineering. No DDoS."
+    },
+    {
+        id: "mynfp",
+        name: "myNFP",
+        description: "Period application.",
+        assets: "Android + iOS apps, mynfp.de",
+        status: "unconfirmed",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "kassenkompass",
+        name: "KassenKompass",
+        description: "German public health insurance comparison.",
+        assets: "kassenkompass.de",
+        status: "unconfirmed",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "gop",
+        name: "GOP Varieté-Theater",
+        description: "Varieté theatres and Ticket Booking",
+        assets: "variete.de, tixu-shop.variete.de, tixu.io",
+        status: "unconfirmed",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "bws",
+        name: "Baden-Württemberg Stiftung",
+        description: "Baden-Württemberg Foundation.",
+        assets: "bws-world.de, bw-stipendium.de",
+        status: "unconfirmed",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "inwx",
+        name: "INWX",
+        description: "Domain registrar.",
+        assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
+        status: "unconfirmed",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "aldi-nord",
+        name: "ALDI Nord",
+        description: "Discounter Supermarket.",
+        assets: "https://www.aldi-nord.de/",
+        status: "unconfirmed",
+        notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
+    },
+    {
+        id: "roatel",
+        name: "Roatel",
+        description: "Micro-hotels close to roads.",
+        assets: "https://www.roatel.com/",
+        status: "unconfirmed",
+        notes: "All domains of Roatel. No social engineering. No DDoS."
+    },
+    {
+        id: "wizard-games",
+        name: "Wizard Games",
+        description: "Complete suite of casino games.",
+        assets: "https://wizard.games",
+        status: "unconfirmed",
+        notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
+    },
+    {
+        id: "bragg-group",
+        name: "BRAGG Group",
+        description: "National full-service iGaming content and technology solutions provider to the worldwide gambling industry.",
+        assets: "https://bragg.group/solutions/casino-content/studios/",
+        status: "unconfirmed",
+        notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
+    },
+    {
+        id: "mindboost",
+        name: "mindboost",
+        description: "Concentration Improvement Platform — Web App only. Rewards by severity.",
+        assets: "https://mindboost.app",
+        status: "paused",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "beroomie",
+        name: "Beroomie.App",
+        description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
+        assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
+        status: "paused",
+        notes: "No social engineering. No DDoS."
+    },
+    {
+        id: "belgium-cvd",
+        name: "Belgium-assigned IP addresses",
+        description: "Test anything on IP addresses of Belgium, stick to Coordinated Vulnerability Disclosure (CVD). Report with us and we will help you get bounties paid.",
+        assets: "https://lite.ip2location.com/belgium-ip-address-ranges",
+        status: "active",
+        notes: "No social engineering. No DDoS."
+    }
 ];
 
 function telegramShareUrl(text) {
-  // Use TELEGRAM_HANDLE and properly encode the prefilled text
   const handle = String(TELEGRAM_HANDLE || "").replace(/^@/, "");
   const base = handle ? `https://t.me/${handle}` : `https://t.me/`;
   return `${base}?text=${encodeURIComponent(text)}`;
@@ -323,13 +366,32 @@ programs.forEach(p => {
   head.className = "prog-head";
 
   const titleDiv = document.createElement("div");
+
   const title = document.createElement("h4");
   title.className = "prog-title";
   title.textContent = p.name;
+
+  /* STATUS BLOCK */
+  const statusDiv = document.createElement("div");
+  statusDiv.style.fontSize = "13px";
+  statusDiv.style.marginTop = "4px";
+  statusDiv.style.color = "var(--muted)";
+
+  const dot = document.createElement("span");
+  dot.className = "status-dot status-" + p.status;
+
+  const text = document.createElement("span");
+  text.textContent = p.status.charAt(0).toUpperCase() + p.status.slice(1);
+
+  statusDiv.appendChild(dot);
+  statusDiv.appendChild(text);
+
   const sub = document.createElement("div");
   sub.className = "prog-sub";
   sub.textContent = p.description;
+
   titleDiv.appendChild(title);
+  titleDiv.appendChild(statusDiv); // add status under title
   titleDiv.appendChild(sub);
 
   const details = document.createElement("div");
@@ -369,15 +431,12 @@ programs.forEach(p => {
   programsEl.appendChild(wrap);
 });
 
-/* Quick Report and Header CTA */
+/* Quick Report button */
 const quickText = `[Report] Program: (company name)\nSeverity:\nSummary:\nPoC / Steps:\nContact:\n`;
 const quickReportEl = document.getElementById("quick-report");
-const headerCtaEl = document.getElementById("report-cta");
 if (quickReportEl) quickReportEl.href = telegramShareUrl(quickText);
-if (headerCtaEl) headerCtaEl.href = telegramShareUrl(quickText);
+
 </script>
-
-
 
 </body>
 </html>
