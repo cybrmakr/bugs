@@ -3,6 +3,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Onboarding Form</title>
     <script async src="https://tally.so/widgets/embed.js"></script>
+    <script>
+  // Runs immediately when the script loads
+  const hideTally = () => {
+    document.querySelectorAll('.tally-powered').forEach(el => {
+        el.style.display = 'none';
+        el.style.visibility = 'hidden'; // Backup for different layout needs
+    });
+  };
+
+  // Run once on load
+  hideTally();
+
+  // If the element is added dynamically (like a popup), 
+  // you may need to run it after a short delay
+  setTimeout(hideTally, 1000);
+</script>
+
     <style>
   .tally-powered {
     display: none !important;
