@@ -104,7 +104,7 @@
     margin-right: 6px;
   }
   .status-active { background: var(--ok); }
-  .status-unconfirmed { background: var(--accent); }
+  .status-open { background: var(--accent); }
   .status-paused { background: var(--danger); }
 
   .trust-box {
@@ -288,63 +288,70 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "Kinetic Digital",
         description: "Online gaming experiences.",
         assets: "kineticdigital.com/our-brands, whole domain and mobile apps",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
+    },{
+        id: "homeday",
+        name: "Homeday",
+        description: "Real estate market place in Germany.",
+        assets: "*.homeday.de",
+        status: "open",
+        notes: "All domains belonging to Homeday GmbH. No social engineering. No DDoS."
     },{
         id: "bitburst",
         name: "BitBurst GmbH",
         description: "",
         assets: "https://play.google.com/store/apps/details?id=net.bitburst.pollpay, https://play.google.com/store/apps/details?id=net.bitburst.easybucks",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "phorms",
         name: "Phorms Education",
         description: "Private education provider.",
         assets: "phorms.de",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
   },{
         id: "neotaste",
         name: "Neotaste",
         description: "Find new restaurants and pay less.",
         assets: "neotaste.com, mobile Apps",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "propetware",
         name: "ProPet Software Inc.",
         description: "Software For Dog Daycare, Training, Grooming.",
         assets: "*.propetware.com, Demo",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "scalasport",
         name: "Scala Sports",
         description: "White-label apps for racket sports associations.",
         assets: "scalasports.com, Apps",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "sevdesk",
         name: "SevDesk",
         description: "Office and business software.",
         assets: "sevdesk.de",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "savvynomad",
         name: "SavvyNomad",
         description: "Save taxes moving tax residency to Florida.",
         assets: "*.savvynomad.io",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "mynfp",
         name: "myNFP",
         description: "Period application.",
         assets: "Android + iOS apps, mynfp.de",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },
     {
@@ -352,7 +359,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "KassenKompass",
         description: "German public health insurance comparison.",
         assets: "kassenkompass.de",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },
     {
@@ -360,7 +367,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "Baden-Württemberg Stiftung",
         description: "Baden-Württemberg Foundation.",
         assets: "bws-world.de, bw-stipendium.de",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },
     {
@@ -368,7 +375,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "INWX",
         description: "Domain registrar.",
         assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
-        status: "unconfirmed",
+        status: "open",
         notes: "No social engineering. No DDoS."
     },
     {
@@ -376,7 +383,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "ALDI Nord",
         description: "Discounter Supermarket.",
         assets: "https://www.aldi-nord.de/",
-        status: "unconfirmed",
+        status: "open",
         notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
     },
     {
@@ -384,7 +391,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "Roatel",
         description: "Micro-hotels close to roads.",
         assets: "https://www.roatel.com/",
-        status: "unconfirmed",
+        status: "open",
         notes: "All domains of Roatel. No social engineering. No DDoS."
     },
     {
@@ -392,7 +399,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "Wizard Games",
         description: "Complete suite of casino games.",
         assets: "https://wizard.games",
-        status: "unconfirmed",
+        status: "open",
         notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
     },
     {
@@ -400,7 +407,7 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "BRAGG Group",
         description: "National full-service iGaming content and technology solutions provider to the worldwide gambling industry.",
         assets: "https://bragg.group/solutions/casino-content/studios/",
-        status: "unconfirmed",
+        status: "open",
         notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
     },
     {
