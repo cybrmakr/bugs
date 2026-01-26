@@ -245,7 +245,6 @@ const TELEGRAM_HANDLE = "maiosec";
         notes: "No social engineering. No DDoS."
 },
 */
-
   const programs = [
     
 {
@@ -256,15 +255,20 @@ const TELEGRAM_HANDLE = "maiosec";
         status: "active",
         notes: "No social engineering. No DDoS."
 },{
+        id: "localiza",
+        name: "Localiza Rent a Car",
+        description: "International car rental.",
+        assets: "All owned company assets and *.localiza.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},{
         id: "jtl",
         name: "JTL Software",
         description: "",
         assets: "https://www.jtl-software.com/de/preise-und-tarife, *.jtl-software.com",
         status: "open",
         notes: "JTL ERP and Shop system, WMS system and websites. No social engineering. No DDoS."
-},
-    
-    {
+},{
         id: "avatarux",
         name: "AvatarUX",
         description: "Online slot machine creators.",
@@ -282,7 +286,7 @@ const TELEGRAM_HANDLE = "maiosec";
         id: "gop",
         name: "GOP Varieté-Theater",
         description: "Varieté theatres and Ticket Booking",
-        assets: "variete.de, tixu-shop.variete.de, tixu.io",
+        assets: "All company owned assets; *.variete.de, tixu-shop.variete.de, *.tixu.io",
         status: "active",
         notes: "No social engineering. No DDoS."
     },{
@@ -291,13 +295,6 @@ const TELEGRAM_HANDLE = "maiosec";
         description: "Health care digitization",
         assets: "www.meditech-ai.de, auth.meditech-ai.de, synergy.meditech-ai.de, sentry.meditech-ai.de, autoconfig.meditech-ai.de, npm.meditech-ai.de, dev.api.meditech-ai.de, dev.vitalyze.meditech-ai.de, api.meditech-ai.de, vitalyze.meditech-ai.de, medicbot.meditech-ai.de, nats.meditech-ai.de, goaccess.meditech-ai.de, medibot.meditech-ai.de, app.meditech-ai.de, jenkins.meditech-ai.de",
         status: "active",
-        notes: "No social engineering. No DDoS."
-    },{    
-        id: "kineticdigital",
-        name: "Kinetic Digital",
-        description: "Online gaming experiences.",
-        assets: "kineticdigital.com/our-brands, whole domain and mobile apps",
-        status: "open",
         notes: "No social engineering. No DDoS."
     },{
         id: "homeday",
@@ -332,13 +329,6 @@ const TELEGRAM_HANDLE = "maiosec";
         name: "ProPet Software Inc.",
         description: "Software For Dog Daycare, Training, Grooming.",
         assets: "*.propetware.com, Demo",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "scalasport",
-        name: "Scala Sports",
-        description: "White-label apps for racket sports associations.",
-        assets: "scalasports.com, Apps",
         status: "open",
         notes: "No social engineering. No DDoS."
     },{
@@ -380,28 +370,12 @@ const TELEGRAM_HANDLE = "maiosec";
         notes: "No social engineering. No DDoS."
     },
     {
-        id: "inwx",
-        name: "INWX",
-        description: "Domain registrar.",
-        assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },
-    {
         id: "aldi-nord",
         name: "ALDI Nord",
         description: "Discounter Supermarket.",
         assets: "https://www.aldi-nord.de/",
         status: "open",
         notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
-    },
-    {
-        id: "roatel",
-        name: "Roatel",
-        description: "Micro-hotels close to roads.",
-        assets: "https://www.roatel.com/",
-        status: "open",
-        notes: "All domains of Roatel. No social engineering. No DDoS."
     },
     {
         id: "wizard-games",
@@ -418,8 +392,36 @@ const TELEGRAM_HANDLE = "maiosec";
         assets: "https://bragg.group/solutions/casino-content/studios/",
         status: "open",
         notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
+    },{    
+        id: "kineticdigital",
+        name: "Kinetic Digital",
+        description: "Online gaming experiences.",
+        assets: "kineticdigital.com/our-brands, whole domain and mobile apps",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+    },{
+        id: "scalasport",
+        name: "Scala Sports",
+        description: "White-label apps for racket sports associations.",
+        assets: "scalasports.com, Apps",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+    },{
+        id: "roatel",
+        name: "Roatel",
+        description: "Micro-hotels close to roads.",
+        assets: "https://www.roatel.com/",
+        status: "paused",
+        notes: "All domains of Roatel. No social engineering. No DDoS."
     },
     {
+        id: "inwx",
+        name: "INWX",
+        description: "Domain registrar.",
+        assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+    },{
         id: "mindboost",
         name: "mindboost",
         description: "Concentration Improvement Platform — Web App only. Rewards by severity.",
