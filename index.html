@@ -233,6 +233,112 @@
 
 <script>
 
+  /* ===== PROGRAM DATA ===== */
+
+const programs = [
+
+{
+  id: "questnet",
+  name: "Questnet GmbH",
+  description: "IP-Infrastructure incl. Webapp",
+  assets: "https://live-manager.de, 185.158.96.0/22",
+  status: "active",
+  premium: true,
+  notes: "No social engineering. No DDoS."
+},
+
+{
+  id: "localiza",
+  name: "Localiza Rent a Car",
+  description: "International car rental.",
+  assets: "*.localiza.com",
+  status: "open",
+  notes: "No social engineering. No DDoS."
+},
+
+{
+  id: "example1",
+  name: "Example Corp",
+  description: "E-commerce platform.",
+  assets: "*.example.com",
+  status: "open",
+  notes: "Testing only production assets."
+},
+
+{
+  id: "example2",
+  name: "CloudHost Ltd",
+  description: "Cloud hosting services.",
+  assets: "*.cloudhost.com",
+  status: "active",
+  notes: "No brute force."
+},
+
+{
+  id: "example3",
+  name: "FinTech Global",
+  description: "Financial services.",
+  assets: "*.fintech.com",
+  status: "open",
+  notes: "No phishing tests."
+},
+
+{
+  id: "example4",
+  name: "RetailPro",
+  description: "Retail chain systems.",
+  assets: "*.retailpro.com",
+  status: "open",
+  notes: "Staging allowed."
+},
+
+{
+  id: "example5",
+  name: "HealthPlus",
+  description: "Healthcare services.",
+  assets: "*.healthplus.com",
+  status: "active",
+  notes: "No DoS."
+},
+
+{
+  id: "example6",
+  name: "EduPlatform",
+  description: "Online education platform.",
+  assets: "*.eduplatform.com",
+  status: "open",
+  notes: "Student accounts allowed."
+},
+
+{
+  id: "example7",
+  name: "TravelNow",
+  description: "Travel booking system.",
+  assets: "*.travelnow.com",
+  status: "active",
+  notes: "No automated scanning."
+},
+
+{
+  id: "example8",
+  name: "CryptoTrade",
+  description: "Cryptocurrency exchange.",
+  assets: "*.cryptotrade.com",
+  status: "open",
+  notes: "Report responsibly."
+},
+
+{
+  id: "example9",
+  name: "MediaStream",
+  description: "Streaming platform.",
+  assets: "*.mediastream.com",
+  status: "open",
+  notes: "No content scraping."
+}
+
+];
+
 const REPORT_URL = "https://github.com/cybrmakr/bugs/security/advisories/new";
 
 /* PREMIUM PROGRAMS (sticky at top in this order) */
