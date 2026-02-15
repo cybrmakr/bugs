@@ -6,542 +6,182 @@
 <title>Private Bug Bounty Hub</title>
 
 <style>
-  /* === brand style === */
-  :root {
-    --bg: #0b0f14;
-    --panel: #111620;
-    --text: #e8eef6;
-    --muted: #b2c2d6;
-    --brand: #7c5cff;
-    --brand-2: #00d1b2;
-    --accent: #ffb454;
-    --danger: #ff5d5d;
-    --ok: #36d399;
-    --focus: #5ad1ff;
-    --radius: 16px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-    --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
-    --maxw: 1100px;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #0b0f14;
-      --panel: #111620;
-      --text: #e8eef6;
-      --muted: #b2c2d6;
-      --brand: #7c5cff;
-      --brand-2: #00d1b2;
-      --accent: #ffb454;
-      --danger: #ff5d5d;
-      --ok: #36d399;
-      --focus: #5ad1ff;
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
-      --maxw: 1100px;
-    }
-  }
-
-  html,body { height:100%; }
-  body{
-    margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg, var(--bg), #0b0f14 60%);
-    color: var(--text);
-  }
-  a { color:var(--brand); text-decoration:none; }
-  a:hover{ opacity:.95; }
-  .container { max-width:var(--maxw); margin:0 auto; padding:20px; }
-  header{
-    position:sticky; top:0; z-index:10;
-    backdrop-filter: saturate(140%) blur(12px);
-    background: color-mix(in hsl, var(--bg), transparent 35%);
-    border-bottom:1px solid color-mix(in hsl, var(--muted), transparent 70%);
-  }
-  .nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 20px; }
-  .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px; }
-  .logo{ width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:var(--shadow-sm); }
-  .nav a{ padding:8px 12px; border-radius:999px; font-weight:600; color:var(--text); opacity:.9; }
-  .cta{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff !important; box-shadow:var(--shadow-sm); }
-
-  .hero{ display:grid; gap:10px; padding:30px 0 8px; text-align:center; }
-  .hero h1{ font-size:clamp(28px,5vw,40px); margin:0; }
-  .hero p{ color:var(--muted); margin:0; font-size:16px; }
-  .actions{ display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
-  .btn{ border:0; border-radius:999px; padding:10px 16px; font-weight:700; cursor:pointer; background:var(--panel); color:var(--text); box-shadow:var(--shadow-sm); }
-  .btn:hover{ transform:translateY(-1px); }
-  .card{ background:var(--panel); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
-  .grid{ display:grid; gap:14px; margin-top:26px; }
-  @media(min-width:900px){ .grid{ grid-template-columns: repeat(2,1fr); } }
-
-  /* Company card */
-  .program {
-    display:flex; gap:14px; align-items:flex-start; padding:14px; border-radius:12px;
-  }
-  .avatar {
-    width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); flex-shrink:0;
-    display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;
-  }
-  .prog-body { flex:1; min-width:0; }
-  .prog-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
-  .prog-title { font-size:18px; margin:0; }
-  .prog-sub { color:var(--muted); font-size:13px; margin-top:4px; }
-
-  .small { padding:8px 10px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; border:0; background:transparent; color:var(--text); box-shadow:none; }
-  .outline { border:1px solid color-mix(in hsl,var(--muted), transparent 80%); }
-  .danger { background: linear-gradient(135deg,var(--danger),#ff7b7b); color:#fff; box-shadow:var(--shadow-sm); }
-
-  .details { margin-top:10px; color:var(--muted); font-size:14px; display:none; }
-  .details.open { display:block; }
-
-  /* STATUS DOTS */
-  .status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 6px;
-  }
-  .status-active { background: var(--ok); }
-  .status-open { background: var(--accent); }
-  .status-paused { background: var(--danger); }
-
-  .trust-box {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: var(--panel);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .trust-box .ava img {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-  }
-
-  .btn-notify {
-  display: inline-block;
-  padding: 12px 22px;
-  font-weight: 700;
-  font-size: 15px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: #fff !important;
-  background: linear-gradient(135deg, var(--accent), var(--brand));
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, opacity 0.15s ease;
+:root {
+  --bg: #0b0f14;
+  --panel: #111620;
+  --text: #e8eef6;
+  --muted: #b2c2d6;
+  --brand: #7c5cff;
+  --brand-2: #00d1b2;
+  --accent: #ffb454;
+  --danger: #ff5d5d;
+  --ok: #36d399;
+  --focus: #5ad1ff;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+  --maxw: 1100px;
 }
 
-.btn-notify:hover {
-  transform: translateY(-2px);
-  opacity: 0.92;
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui;
+  background: linear-gradient(180deg, var(--bg), #0b0f14 60%);
+  color: var(--text);
 }
 
+.container { max-width:var(--maxw); margin:0 auto; padding:20px; }
+.card{ background:var(--panel); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
+.grid{ display:grid; gap:14px; margin-top:26px; }
+@media(min-width:900px){ .grid{ grid-template-columns: repeat(2,1fr); } }
 
-  footer { text-align:center; color:var(--muted); margin:40px 0 20px; font-size:13px; }
+.program { display:flex; gap:14px; align-items:flex-start; padding:14px; border-radius:12px; }
+.avatar {
+  width:56px; height:56px; border-radius:10px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; color:#fff;
+}
+
+.status-dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:6px; }
+.status-active { background:var(--ok); }
+.status-open { background:var(--accent); }
+.status-paused { background:var(--danger); }
+
+.small { padding:8px 10px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; border:0; }
+.outline { border:1px solid rgba(255,255,255,0.15); background:transparent; color:var(--text); }
+.danger { background: linear-gradient(135deg,var(--danger),#ff7b7b); color:#fff; }
+
+.details { margin-top:10px; color:var(--muted); font-size:14px; display:none; }
+.details.open { display:block; }
+
+.premium-badge {
+  margin-left:8px;
+  font-size:11px;
+  font-weight:800;
+  padding:3px 8px;
+  border-radius:999px;
+  background:linear-gradient(135deg,gold,orange);
+  color:#000;
+}
 </style>
 </head>
 
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        Private Bug Bounty
-      </div>
-      <nav>
-        <a href="#how">How It Works</a>
-        <a href="#programs">Programs</a>
-        <a href="leaderbord.html">Hacker Leaderboard</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Private Bug Bounty</h1>
-      <p>Choose a program, read the scope, and report directly via Telegram.</p>
-      <p>(We're looking for impactful bugs!)</p>
-      <div class="actions">
-        <a href="#programs" class="btn">View Programs</a>
-        <a id="quick-report" class="btn" href="#" target="_blank" rel="noopener noreferrer">Quick Report</a>
-      </div>
-    </section>
-
-    <section id="how" class="card" style="margin-top:26px;">
-      <h2 style="margin:0 0 8px;">How It Works</h2>
-      <p style="margin:0;color:var(--muted);line-height:1.6;">
-        1️⃣ Pick a company’s program below.<br>
-        2️⃣ Check its allowed targets and short rules.<br>
-        3️⃣ Click <strong>Report</strong>,  Telegram opens.<br>
-        4️⃣ Add vulnerability details, PoC, and your contact. Send. Done.
-      </p>
-    </section>
-
-    <section id="programs" class="grid" aria-label="Partner Programs" style="margin-top:22px;">
-      <!-- Program cards populated by JS -->
-    </section>
-
-    <section class="card" style="text-align:center;margin-top:26px;">
-      <h3 style="margin:0 0 8px;">Get Notified About Updates</h3>
-      <p style="margin:0;color:var(--muted);line-height:1.6;">
-        Want to stay in the loop when new programs or changes go live?
-      </p>
-   <a 
-  href="https://mail.olivermaicher.eu" 
-  class="btn-notify"
-  target="_blank" 
-  rel="noopener noreferrer"
->
-  🔔 Notify Me
-</a>
-
-    </section>
-
-    <section class="card" style="text-align:center;margin-top:26px;">
-      <h3 style="margin:0 0 8px;">Security Guidelines</h3>
-      <p style="margin:0;color:var(--muted);line-height:1.6;">
-        Only test authorized assets, avoid data extraction or DoS, preferably High and Critical vulnerabilities. All submitted reports remain confidential.
-      </p>
-    </section>
-
-    <div class="trust-box" id="about">
-      <div class="ava" aria-hidden="true">
-        <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
-      </div>
-      <div>
-        <h3>Created by Oliver Maicher</h3>
-        <small>Fast responses and global security expertise tailored for you.</small>
-      </div>
-    </div>
-
-    <footer>
-        <small>Submit responsibly. Sensitive data should be shared encrypted.</small>
-        <br><br>
-        Private Bug Bounty • Created by <strong>Oliver Maicher</strong>.
-        <br>
-        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
-    </footer>
-  </main>
+<main class="container">
+  <h1>Private Bug Bounty</h1>
+  <div class="grid" id="programs"></div>
+</main>
 
 <script>
 
-const TELEGRAM_HANDLE = "maiosec";
+/* ===== Programs ===== */
 
-    /*
+const programs = [
+
 {
-        id: "",
-        name: "",
-        description: "",
-        assets: "",
-        status: "",
-        notes: "No social engineering. No DDoS."
+  id: "questnet",
+  name: "Questnet GmbH",
+  description: "IP-Infrastructure incl. Webapp",
+  assets: "https://live-manager.de, 185.158.96.0/22",
+  status: "active",
+  premium: true,
+  notes: "No social engineering. No DDoS."
 },
 
-*/
-  const programs = [
-    
 {
-        id: "questnet",
-        name: "Questnet GmbH",
-        description: "IP-Infrastructure incl. Webapp",
-        assets: "https://live-manager.de, 185.158.96.0/22",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "localiza",
-        name: "Localiza Rent a Car",
-        description: "International car rental.",
-        assets: "All owned company assets and *.localiza.com",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "jims-group",
-        name: "Jim's Group",
-        description: "Jim’s Group is a franchising family.",
-        assets: "All domains of all services on jims.net",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "smilodox",
-        name: "Smilodox",
-        description: "Sports fashion and supplements.",
-        assets: "*.neosupps.com, *.smilodox.com",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "finanztip",
-        name: "Finanztip",
-        description: "Finance tips",
-        assets: "*.finanztip.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "aubi",
-        name: "Aubi Fashion",
-        description: "Fashion retail.",
-        assets: "*.aubi.net, *.schuhwerk-go.de, *.indigo-shop.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "jtl",
-        name: "JTL Software",
-        description: "",
-        assets: "https://www.jtl-software.com/de/preise-und-tarife, *.jtl-software.com",
-        status: "open",
-        notes: "JTL ERP and Shop system, WMS system and websites. No social engineering. No DDoS."
-},{
-        id: "avatarux",
-        name: "AvatarUX",
-        description: "Online slot machine creators.",
-        assets: "roobet.com, stake.com, gamdom.com, betpanda.io, rainbet.com, avatarux.com",
-        status: "active",
-        notes: "Vulnerabilities that create financial damage (e.g. cheating games) will be rewarded. No social engineering. No DDoS."
-    },{
-        id: "bodog",
-        name: "Bodog",
-        description: "Online betting, poker and gambling sites.",
-        assets: "BodogBrand.com, bodogpoker.com, bodog.ag, bodog.eu, bodog.net, bodog-ca.com, bovada.com",
-        status: "active",
-        notes: "Use VPN for different national platforms. No social engineering. No DDoS."
-    },{
-        id: "gop",
-        name: "GOP Varieté-Theater",
-        description: "Varieté theatres and Ticket Booking",
-        assets: "All company owned assets; *.variete.de, tixu-shop.variete.de, *.tixu.io",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "meditech",
-        name: "Meditech AI",
-        description: "Health care digitization",
-        assets: "www.meditech-ai.de, auth.meditech-ai.de, synergy.meditech-ai.de, sentry.meditech-ai.de, autoconfig.meditech-ai.de, npm.meditech-ai.de, dev.api.meditech-ai.de, dev.vitalyze.meditech-ai.de, api.meditech-ai.de, vitalyze.meditech-ai.de, medicbot.meditech-ai.de, nats.meditech-ai.de, goaccess.meditech-ai.de, medibot.meditech-ai.de, app.meditech-ai.de, jenkins.meditech-ai.de",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "hitschies",
-        name: "Hitschies",
-        description: "Sweets manufacturer",
-        assets: "All company domains, *.hitschies.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "homeday",
-        name: "Homeday",
-        description: "Real estate market place in Germany.",
-        assets: "*.homeday.de",
-        status: "open",
-        notes: "All domains belonging to Homeday GmbH. No social engineering. No DDoS."
-    },{
-        id: "bitburst",
-        name: "BitBurst GmbH",
-        description: "",
-        assets: "https://play.google.com/store/apps/details?id=net.bitburst.pollpay, https://play.google.com/store/apps/details?id=net.bitburst.easybucks",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "phorms",
-        name: "Phorms Education",
-        description: "Private education provider.",
-        assets: "phorms.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-  },{
-        id: "neotaste",
-        name: "Neotaste",
-        description: "Find new restaurants and pay less.",
-        assets: "neotaste.com, mobile Apps",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "propetware",
-        name: "ProPet Software Inc.",
-        description: "Software For Dog Daycare, Training, Grooming.",
-        assets: "*.propetware.com, Demo",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "sevdesk",
-        name: "SevDesk",
-        description: "Office and business software.",
-        assets: "sevdesk.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "savvynomad",
-        name: "SavvyNomad",
-        description: "Save taxes moving tax residency to Florida.",
-        assets: "*.savvynomad.io",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "mynfp",
-        name: "myNFP",
-        description: "Period application.",
-        assets: "Android + iOS apps, mynfp.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "kassenkompass",
-        name: "KassenKompass",
-        description: "German public health insurance comparison.",
-        assets: "kassenkompass.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "bws",
-        name: "Baden-Württemberg Stiftung",
-        description: "Baden-Württemberg Foundation.",
-        assets: "bws-world.de, bw-stipendium.de",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "aldi-nord",
-        name: "ALDI Nord",
-        description: "Discounter Supermarket.",
-        assets: "https://www.aldi-nord.de/",
-        status: "open",
-        notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
-    },
-    {
-        id: "wizard-games",
-        name: "Wizard Games",
-        description: "Complete suite of casino games.",
-        assets: "https://wizard.games",
-        status: "open",
-        notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
-    },
-    {
-        id: "bragg-group",
-        name: "BRAGG Group",
-        description: "National full-service iGaming content and technology solutions provider to the worldwide gambling industry.",
-        assets: "https://bragg.group/solutions/casino-content/studios/",
-        status: "open",
-        notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
-    },{    
-        id: "kineticdigital",
-        name: "Kinetic Digital",
-        description: "Online gaming experiences.",
-        assets: "kineticdigital.com/our-brands, whole domain and mobile apps",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "scalasport",
-        name: "Scala Sports",
-        description: "White-label apps for racket sports associations.",
-        assets: "scalasports.com, Apps",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "helios-fresenius",
-        name: "Helios + Fresenius ",
-        description: "Health care",
-        assets: "* of Helios/Fresenius",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "roatel",
-        name: "Roatel",
-        description: "Micro-hotels close to roads.",
-        assets: "https://www.roatel.com/",
-        status: "paused",
-        notes: "All domains of Roatel. No social engineering. No DDoS."
-    },
-    {
-        id: "inwx",
-        name: "INWX",
-        description: "Domain registrar.",
-        assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
-        status: "open",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "mindboost",
-        name: "mindboost",
-        description: "Concentration Improvement Platform — Web App only. Rewards by severity.",
-        assets: "https://mindboost.app",
-        status: "paused",
-        notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "beroomie",
-        name: "Beroomie.App",
-        description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
-        assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
-        status: "paused",
-        notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "belgium-cvd",
-        name: "Belgium-assigned IP addresses",
-        description: "Test anything on IP addresses of Belgium, stick to Coordinated Vulnerability Disclosure (CVD). Report with us and we will help you get bounties paid.",
-        assets: "https://lite.ip2location.com/belgium-ip-address-ranges",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-    }
-];
+  id: "localiza",
+  name: "Localiza Rent a Car",
+  description: "International car rental.",
+  assets: "*.localiza.com",
+  status: "open",
+  notes: "No social engineering. No DDoS."
+},
 
-function telegramShareUrl(text) {
-  const handle = String(TELEGRAM_HANDLE || "").replace(/^@/, "");
-  const base = handle ? `https://t.me/${handle}` : `https://t.me/`;
-  return `${base}?text=${encodeURIComponent(text)}`;
+{
+  id: "jims-group",
+  name: "Jim's Group",
+  description: "Franchising family.",
+  assets: "jims.net",
+  status: "open",
+  notes: "No social engineering. No DDoS."
+},
+
+{
+  id: "smilodox",
+  name: "Smilodox",
+  description: "Sports fashion.",
+  assets: "*.smilodox.com",
+  status: "open",
+  notes: "No social engineering. No DDoS."
+},
+
+{
+  id: "finanztip",
+  name: "Finanztip",
+  description: "Finance tips.",
+  assets: "*.finanztip.de",
+  status: "open",
+  notes: "No social engineering. No DDoS."
 }
 
-/* Render partner programs */
+];
+
+/* ===== Randomization Logic ===== */
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const premiumPrograms = programs.filter(p => p.premium);
+const normalPrograms = shuffleArray(programs.filter(p => !p.premium));
+const sortedPrograms = [...premiumPrograms, ...normalPrograms];
+
+/* ===== Render ===== */
+
 const programsEl = document.getElementById("programs");
 
-programs.forEach(p => {
+sortedPrograms.forEach(p => {
+
   const wrap = document.createElement("div");
   wrap.className = "card program";
 
   const avatar = document.createElement("div");
   avatar.className = "avatar";
-  avatar.setAttribute('aria-hidden', 'true');
   avatar.textContent = p.name.split(" ").map(s=>s[0]).slice(0,2).join("").toUpperCase();
 
   const body = document.createElement("div");
-  body.className = "prog-body";
+  body.style.flex = "1";
 
-  const head = document.createElement("div");
-  head.className = "prog-head";
-
-  const titleDiv = document.createElement("div");
-
-  const title = document.createElement("h4");
-  title.className = "prog-title";
+  const title = document.createElement("h3");
   title.textContent = p.name;
 
-  /* STATUS BLOCK */
-  const statusDiv = document.createElement("div");
-  statusDiv.style.fontSize = "13px";
-  statusDiv.style.marginTop = "4px";
-  statusDiv.style.color = "var(--muted)";
+  if (p.premium) {
+    const badge = document.createElement("span");
+    badge.className = "premium-badge";
+    badge.textContent = "PREMIUM";
+    title.appendChild(badge);
+  }
 
+  const statusDiv = document.createElement("div");
   const dot = document.createElement("span");
   dot.className = "status-dot status-" + p.status;
 
-  const text = document.createElement("span");
-  text.textContent = p.status.charAt(0).toUpperCase() + p.status.slice(1);
+  const statusText = document.createElement("span");
+  statusText.textContent = p.status.charAt(0).toUpperCase() + p.status.slice(1);
 
   statusDiv.appendChild(dot);
-  statusDiv.appendChild(text);
+  statusDiv.appendChild(statusText);
 
-  const sub = document.createElement("div");
-  sub.className = "prog-sub";
-  sub.textContent = p.description;
-
-  titleDiv.appendChild(title);
-  titleDiv.appendChild(statusDiv); // add status under title
-  titleDiv.appendChild(sub);
+  const desc = document.createElement("div");
+  desc.textContent = p.description;
+  desc.style.color = "#b2c2d6";
+  desc.style.marginTop = "4px";
 
   const details = document.createElement("div");
   details.className = "details";
@@ -560,30 +200,28 @@ programs.forEach(p => {
 
   const reportBtn = document.createElement("a");
   reportBtn.className = "small danger";
-  const prefill = `[Report] Program: ${p.name}\nAssets: ${p.assets}\nSeverity: (high / medium / low)\nSummary:\nPoC / Steps:\nContact:\n`;
-  reportBtn.href = telegramShareUrl(prefill);
+  reportBtn.href = "https://github.com/cybrmakr/bugs/security/advisories/new";
   reportBtn.target = "_blank";
   reportBtn.rel = "noopener noreferrer";
   reportBtn.textContent = "Report";
 
-  const actions = document.createElement("div");
-  actions.appendChild(detailsBtn);
-  actions.appendChild(reportBtn);
+  const actionDiv = document.createElement("div");
+  actionDiv.style.marginTop = "10px";
+  actionDiv.appendChild(detailsBtn);
+  actionDiv.appendChild(reportBtn);
 
-  head.appendChild(titleDiv);
-  head.appendChild(actions);
-  body.appendChild(head);
+  body.appendChild(title);
+  body.appendChild(statusDiv);
+  body.appendChild(desc);
   body.appendChild(details);
+  body.appendChild(actionDiv);
 
   wrap.appendChild(avatar);
   wrap.appendChild(body);
-  programsEl.appendChild(wrap);
-});
 
-/* Quick Report button */
-const quickText = `[Report] Program: (company name)\nSeverity:\nSummary:\nPoC / Steps:\nContact:\n`;
-const quickReportEl = document.getElementById("quick-report");
-if (quickReportEl) quickReportEl.href = telegramShareUrl(quickText);
+  programsEl.appendChild(wrap);
+
+});
 
 </script>
 
