@@ -245,247 +245,528 @@
 
 */
   const programs = [
-    
+
 {
-        id: "questnet",
+        id: "questnet-gmbh",
         name: "Questnet GmbH",
-        description: "IP-Infrastructure incl. Webapp",
-        assets: "https://live-manager.de, 185.158.96.0/22",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-},{
-        id: "localiza",
-        name: "Localiza Rent a Car",
-        description: "International car rental.",
-        assets: "All owned company assets and *.localiza.com",
+        description: "IP infrastructure and web applications",
+        assets: "*.live-manager.de, 185.158.96.0/22",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "jims-group",
+},
+{
+        id: "localiza-rent-a-car",
+        name: "Localiza Rent a Car S.A.",
+        description: "International car rental and mobility provider",
+        assets: "*.localiza.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "jims-group-franchise",
         name: "Jim's Group",
-        description: "Jim’s Group is a franchising family.",
-        assets: "All domains of all services on jims.net",
+        description: "International franchising group operating multiple service brands",
+        assets: "*.jims.net",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "smilodox",
-        name: "Smilodox",
-        description: "Sports fashion and supplements.",
-        assets: "*.neosupps.com, *.smilodox.com",
+},
+{
+        id: "smilodox-neosupps",
+        name: "Smilodox / Neosupps",
+        description: "Sports fashion and supplements brands",
+        assets: "*.smilodox.com, *.neosupps.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "finanztip",
-        name: "Finanztip",
-        description: "Finance tips",
+},
+{
+        id: "finanztip-gmbh",
+        name: "Finanztip Verbraucherinformation GmbH",
+        description: "German personal finance information platform",
         assets: "*.finanztip.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "aubi",
+},
+{
+        id: "aubi-fashion-retail",
         name: "Aubi Fashion",
-        description: "Fashion retail.",
+        description: "Fashion retail company operating multiple online stores",
         assets: "*.aubi.net, *.schuhwerk-go.de, *.indigo-shop.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "jtl",
-        name: "JTL Software",
-        description: "",
-        assets: "https://www.jtl-software.com/de/preise-und-tarife, *.jtl-software.com",
+},
+{
+        id: "jtl-software-gmbh",
+        name: "JTL-Software-GmbH",
+        description: "ERP, shop and warehouse management software provider",
+        assets: "*.jtl-software.com",
         status: "open",
-        notes: "JTL ERP and Shop system, WMS system and websites. No social engineering. No DDoS."
-},{
-        id: "avatarux",
-        name: "AvatarUX",
-        description: "Online slot machine creators.",
-        assets: "roobet.com, stake.com, gamdom.com, betpanda.io, rainbet.com, avatarux.com",
-        status: "active",
-        notes: "Vulnerabilities that create financial damage (e.g. cheating games) will be rewarded. No social engineering. No DDoS."
-    },{
-        id: "bodog",
+        notes: "JTL ERP and shop system, WMS system and websites. No social engineering. No DDoS."
+},
+{
+        id: "avatarux-studios",
+        name: "AvatarUX Studios",
+        description: "Online slot game developer for iGaming platforms",
+        assets: "*.avatarux.com",
+        status: "open",
+        notes: "Vulnerabilities causing financial damage (e.g. game manipulation) in scope. No social engineering. No DDoS."
+},
+{
+        id: "bodog-group",
         name: "Bodog",
-        description: "Online betting, poker and gambling sites.",
-        assets: "BodogBrand.com, bodogpoker.com, bodog.ag, bodog.eu, bodog.net, bodog-ca.com, bovada.com",
-        status: "active",
-        notes: "Use VPN for different national platforms. No social engineering. No DDoS."
-    },{
-        id: "gop",
+        description: "Online betting, poker and gambling operator",
+        assets: "*.bodogbrand.com, *.bodogpoker.com, *.bodog.ag, *.bodog.eu, *.bodog.net, *.bodog-ca.com, *.bovada.com",
+        status: "open",
+        notes: "Use VPN for different national platforms where required. No social engineering. No DDoS."
+},
+{
+        id: "gop-variete-theater",
         name: "GOP Varieté-Theater",
-        description: "Varieté theatres and Ticket Booking",
-        assets: "All company owned assets; *.variete.de, tixu-shop.variete.de, *.tixu.io",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "meditech",
-        name: "Meditech AI",
-        description: "Health care digitization",
-        assets: "www.meditech-ai.de, auth.meditech-ai.de, synergy.meditech-ai.de, sentry.meditech-ai.de, autoconfig.meditech-ai.de, npm.meditech-ai.de, dev.api.meditech-ai.de, dev.vitalyze.meditech-ai.de, api.meditech-ai.de, vitalyze.meditech-ai.de, medicbot.meditech-ai.de, nats.meditech-ai.de, goaccess.meditech-ai.de, medibot.meditech-ai.de, app.meditech-ai.de, jenkins.meditech-ai.de",
-        status: "active",
-        notes: "No social engineering. No DDoS."
-    },{
-        id: "hitschies",
-        name: "Hitschies",
-        description: "Sweets manufacturer",
-        assets: "All company domains, *.hitschies.de",
+        description: "Varieté theatres and ticket booking services",
+        assets: "*.variete.de, *.tixu.io",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "homeday",
-        name: "Homeday",
-        description: "Real estate market place in Germany.",
+},
+{
+        id: "meditech-ai",
+        name: "Meditech AI GmbH",
+        description: "Healthcare digitization and medical software solutions",
+        assets: "*.meditech-ai.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "hitschies-gmbh",
+        name: "Hitschler International GmbH & Co. KG",
+        description: "Sweets and confectionery manufacturer (Hitschies)",
+        assets: "*.hitschies.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "homeday-gmbh",
+        name: "Homeday GmbH",
+        description: "German real estate marketplace platform",
         assets: "*.homeday.de",
         status: "open",
         notes: "All domains belonging to Homeday GmbH. No social engineering. No DDoS."
-    },{
-        id: "bitburst",
+},
+{
+        id: "bitburst-gmbh",
         name: "BitBurst GmbH",
-        description: "",
-        assets: "https://play.google.com/store/apps/details?id=net.bitburst.pollpay, https://play.google.com/store/apps/details?id=net.bitburst.easybucks",
+        description: "Mobile app developer (Poll Pay, EasyBucks)",
+        assets: "*.bitburst.net",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "phorms",
-        name: "Phorms Education",
-        description: "Private education provider.",
-        assets: "phorms.de",
+},
+{
+        id: "phorms-education",
+        name: "Phorms Education SE",
+        description: "Private bilingual education provider",
+        assets: "*.phorms.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-  },{
-        id: "neotaste",
+},
+{
+        id: "neotaste-app",
         name: "Neotaste",
-        description: "Find new restaurants and pay less.",
-        assets: "neotaste.com, mobile Apps",
+        description: "Restaurant discovery and discount mobile application",
+        assets: "*.neotaste.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "propetware",
+},
+{
+        id: "propet-software",
         name: "ProPet Software Inc.",
-        description: "Software For Dog Daycare, Training, Grooming.",
-        assets: "*.propetware.com, Demo",
+        description: "Software for dog daycare, training and grooming businesses",
+        assets: "*.propetware.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "sevdesk",
-        name: "SevDesk",
-        description: "Office and business software.",
-        assets: "sevdesk.de",
+},
+{
+        id: "sevdesk-gmbh",
+        name: "sevDesk GmbH",
+        description: "Cloud-based office and accounting software",
+        assets: "*.sevdesk.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "savvynomad",
+},
+{
+        id: "savvynomad-io",
         name: "SavvyNomad",
-        description: "Save taxes moving tax residency to Florida.",
+        description: "Tax optimization and residency advisory platform",
         assets: "*.savvynomad.io",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "mynfp",
+},
+{
+        id: "mynfp-app",
         name: "myNFP",
-        description: "Period application.",
-        assets: "Android + iOS apps, mynfp.de",
+        description: "Fertility and period tracking mobile application",
+        assets: "*.mynfp.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "kassenkompass",
+},
+{
+        id: "kassenkompass-de",
         name: "KassenKompass",
-        description: "German public health insurance comparison.",
-        assets: "kassenkompass.de",
+        description: "German public health insurance comparison platform",
+        assets: "*.kassenkompass.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "bws",
-        name: "Baden-Württemberg Stiftung",
-        description: "Baden-Württemberg Foundation.",
-        assets: "bws-world.de, bw-stipendium.de",
+},
+{
+        id: "baden-wuerttemberg-stiftung",
+        name: "Baden-Württemberg Stiftung gGmbH",
+        description: "Foundation supporting education, research and social initiatives",
+        assets: "*.bws-world.de, *.bw-stipendium.de",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "aldi-nord",
+},
+{
+        id: "aldi-nord-group",
         name: "ALDI Nord",
-        description: "Discounter Supermarket.",
-        assets: "https://www.aldi-nord.de/",
+        description: "International discount supermarket chain (Aldi Nord group only)",
+        assets: "*.aldi-nord.de",
         status: "open",
-        notes: "All domains of Aldi Nord. NOT Aldi Süd. No social engineering. No DDoS."
-    },
-    {
-        id: "wizard-games",
-        name: "Wizard Games",
-        description: "Complete suite of casino games.",
-        assets: "https://wizard.games",
+        notes: "All domains of ALDI Nord (not ALDI Süd). No social engineering. No DDoS."
+},
+{
+        id: "wizard-games-aristocrat",
+        name: "Wizard Games / Aristocrat Interactive",
+        description: "Casino game studio and interactive gaming provider",
+        assets: "*.wizard.games",
         status: "open",
         notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
-    },
-    {
-        id: "bragg-group",
-        name: "BRAGG Group",
-        description: "National full-service iGaming content and technology solutions provider to the worldwide gambling industry.",
-        assets: "https://bragg.group/solutions/casino-content/studios/",
+},
+{
+        id: "bragg-group-igaming",
+        name: "Bragg Gaming Group",
+        description: "iGaming content and technology solutions provider",
+        assets: "*.bragg.group",
         status: "open",
-        notes: "All brands and domains of BRAGG Group. No social engineering. No DDoS."
-    },{    
-        id: "kineticdigital",
+        notes: "All brands and domains of Bragg Gaming Group. No social engineering. No DDoS."
+},
+{
+        id: "kinetic-digital-group",
         name: "Kinetic Digital",
-        description: "Online gaming experiences.",
-        assets: "kineticdigital.com/our-brands, whole domain and mobile apps",
+        description: "Online gaming and digital entertainment brands",
+        assets: "*.kineticdigital.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "scalasport",
+},
+{
+        id: "scala-sports",
         name: "Scala Sports",
-        description: "White-label apps for racket sports associations.",
-        assets: "scalasports.com, Apps",
+        description: "White-label applications for racket sports associations",
+        assets: "*.scalasports.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "helios-fresenius",
-        name: "Helios + Fresenius ",
-        description: "Health care",
-        assets: "* of Helios/Fresenius",
+},
+{
+        id: "helios-fresenius-group",
+        name: "Helios / Fresenius SE & Co. KGaA",
+        description: "International healthcare services and hospital operator",
+        assets: "*.helios-gesundheit.de, *.fresenius.com",
         status: "open",
         notes: "No social engineering. No DDoS."
-},{
-        id: "roatel",
-        name: "Roatel",
-        description: "Micro-hotels close to roads.",
-        assets: "https://www.roatel.com/",
+},
+{
+        id: "roatel-gmbh",
+        name: "Roatel GmbH",
+        description: "Micro-hotel provider near highways",
+        assets: "*.roatel.com",
         status: "paused",
         notes: "All domains of Roatel. No social engineering. No DDoS."
-    },
-    {
-        id: "inwx",
-        name: "INWX",
-        description: "Domain registrar.",
-        assets: "inwx.es, inwx.com, inwx.de, inwx.at, inwx.ch",
+},
+{
+        id: "inwx-domain-services",
+        name: "INWX GmbH",
+        description: "Domain registrar and internet services provider",
+        assets: "*.inwx.com, *.inwx.de, *.inwx.at, *.inwx.ch, *.inwx.es",
         status: "open",
         notes: "No social engineering. No DDoS."
-    },{
-        id: "mindboost",
+},
+{
+        id: "mindboost-app",
         name: "mindboost",
-        description: "Concentration Improvement Platform — Web App only. Rewards by severity.",
-        assets: "https://mindboost.app",
+        description: "Web-based concentration improvement platform",
+        assets: "*.mindboost.app",
         status: "paused",
         notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "beroomie",
-        name: "Beroomie.App",
-        description: "Housing and Flatmates Platform — App only. Rewards by severity. Only staging domains allowed.",
-        assets: "App Download for Testing: https://drive.google.com/drive/folders/1ThjTw1imCbEainW4E9cY2iHQ9S1Xv202",
+},
+{
+        id: "beroomie-app",
+        name: "Beroomie",
+        description: "Housing and flatmate mobile application (staging domains only)",
+        assets: "*.beroomie.app",
+        status: "paused",
+        notes: "Only staging domains allowed. No social engineering. No DDoS."
+},
+{
+        id: "belgium-ip-cvd",
+        name: "Belgium Coordinated Vulnerability Disclosure",
+        description: "Belgium-assigned IP address ranges under CVD program",
+        assets: "Belgium IP ranges (CVD scope)",
+        status: "open",
+        notes: "Stick to Coordinated Vulnerability Disclosure (CVD). No social engineering. No DDoS."
+},
+{
+        id: "localiza-rent-a-car",
+        name: "Localiza Rent a Car S.A.",
+        description: "International car rental and mobility provider",
+        assets: "*.localiza.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "jims-group-franchise",
+        name: "Jim's Group",
+        description: "International franchising group operating multiple service brands",
+        assets: "*.jims.net",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "smilodox-neosupps",
+        name: "Smilodox / Neosupps",
+        description: "Sports fashion and supplements brands",
+        assets: "*.smilodox.com, *.neosupps.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "finanztip-gmbh",
+        name: "Finanztip Verbraucherinformation GmbH",
+        description: "German personal finance information platform",
+        assets: "*.finanztip.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "aubi-fashion-retail",
+        name: "Aubi Fashion",
+        description: "Fashion retail company operating multiple online stores",
+        assets: "*.aubi.net, *.schuhwerk-go.de, *.indigo-shop.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "jtl-software-gmbh",
+        name: "JTL-Software-GmbH",
+        description: "ERP, shop and warehouse management software provider",
+        assets: "*.jtl-software.com",
+        status: "open",
+        notes: "JTL ERP and shop system, WMS system and websites. No social engineering. No DDoS."
+},
+{
+        id: "avatarux-studios",
+        name: "AvatarUX Studios",
+        description: "Online slot game developer for iGaming platforms",
+        assets: "*.avatarux.com",
+        status: "open",
+        notes: "Vulnerabilities causing financial damage (e.g. game manipulation) in scope. No social engineering. No DDoS."
+},
+{
+        id: "bodog-group",
+        name: "Bodog",
+        description: "Online betting, poker and gambling operator",
+        assets: "*.bodogbrand.com, *.bodogpoker.com, *.bodog.ag, *.bodog.eu, *.bodog.net, *.bodog-ca.com, *.bovada.com",
+        status: "open",
+        notes: "Use VPN for different national platforms where required. No social engineering. No DDoS."
+},
+{
+        id: "gop-variete-theater",
+        name: "GOP Varieté-Theater",
+        description: "Varieté theatres and ticket booking services",
+        assets: "*.variete.de, *.tixu.io",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "meditech-ai",
+        name: "Meditech AI GmbH",
+        description: "Healthcare digitization and medical software solutions",
+        assets: "*.meditech-ai.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "hitschies-gmbh",
+        name: "Hitschler International GmbH & Co. KG",
+        description: "Sweets and confectionery manufacturer (Hitschies)",
+        assets: "*.hitschies.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "homeday-gmbh",
+        name: "Homeday GmbH",
+        description: "German real estate marketplace platform",
+        assets: "*.homeday.de",
+        status: "paused",
+        notes: "All domains belonging to Homeday GmbH. No social engineering. No DDoS."
+},
+{
+        id: "bitburst-gmbh",
+        name: "BitBurst GmbH",
+        description: "Mobile app developer (Poll Pay, EasyBucks)",
+        assets: "*.bitburst.net",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "phorms-education",
+        name: "Phorms Education SE",
+        description: "Private bilingual education provider",
+        assets: "*.phorms.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "neotaste-app",
+        name: "Neotaste",
+        description: "Restaurant discovery and discount mobile application",
+        assets: "*.neotaste.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "propet-software",
+        name: "ProPet Software Inc.",
+        description: "Software for dog daycare, training and grooming businesses",
+        assets: "*.propetware.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "sevdesk-gmbh",
+        name: "sevDesk GmbH",
+        description: "Cloud-based office and accounting software",
+        assets: "*.sevdesk.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "savvynomad-io",
+        name: "SavvyNomad",
+        description: "Tax optimization and residency advisory platform",
+        assets: "*.savvynomad.io",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "mynfp-app",
+        name: "myNFP",
+        description: "Fertility and period tracking mobile application",
+        assets: "*.mynfp.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "kassenkompass-de",
+        name: "KassenKompass",
+        description: "German public health insurance comparison platform",
+        assets: "*.kassenkompass.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "baden-wuerttemberg-stiftung",
+        name: "Baden-Württemberg Stiftung gGmbH",
+        description: "Foundation supporting education, research and social initiatives",
+        assets: "*.bws-world.de, *.bw-stipendium.de",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "aldi-nord-group",
+        name: "ALDI Nord",
+        description: "International discount supermarket chain (Aldi Nord group only)",
+        assets: "*.aldi-nord.de",
+        status: "open",
+        notes: "All domains of ALDI Nord (not ALDI Süd). No social engineering. No DDoS."
+},
+{
+        id: "wizard-games-aristocrat",
+        name: "Wizard Games / Aristocrat Interactive",
+        description: "Casino game studio and interactive gaming provider",
+        assets: "*.wizard.games",
+        status: "open",
+        notes: "All brands and domains of Wizard Games and Aristocrat Interactive. No social engineering. No DDoS."
+},
+{
+        id: "bragg-group-igaming",
+        name: "Bragg Gaming Group",
+        description: "iGaming content and technology solutions provider",
+        assets: "*.bragg.group",
+        status: "open",
+        notes: "All brands and domains of Bragg Gaming Group. No social engineering. No DDoS."
+},
+{
+        id: "kinetic-digital-group",
+        name: "Kinetic Digital",
+        description: "Online gaming and digital entertainment brands",
+        assets: "*.kineticdigital.com",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "scala-sports",
+        name: "Scala Sports",
+        description: "White-label applications for racket sports associations",
+        assets: "*.scalasports.com",
         status: "paused",
         notes: "No social engineering. No DDoS."
-    },
-    {
-        id: "belgium-cvd",
-        name: "Belgium-assigned IP addresses",
-        description: "Test anything on IP addresses of Belgium, stick to Coordinated Vulnerability Disclosure (CVD). Report with us and we will help you get bounties paid.",
-        assets: "https://lite.ip2location.com/belgium-ip-address-ranges",
-        status: "active",
+},
+{
+        id: "helios-fresenius-group",
+        name: "Helios / Fresenius SE & Co. KGaA",
+        description: "International healthcare services and hospital operator",
+        assets: "*.helios-gesundheit.de, *.fresenius.com",
+        status: "open",
         notes: "No social engineering. No DDoS."
-    }
+},
+{
+        id: "roatel-gmbh",
+        name: "Roatel GmbH",
+        description: "Micro-hotel provider near highways",
+        assets: "*.roatel.com",
+        status: "paused",
+        notes: "All domains of Roatel. No social engineering. No DDoS."
+},
+{
+        id: "inwx-domain-services",
+        name: "INWX GmbH",
+        description: "Domain registrar and internet services provider",
+        assets: "*.inwx.com, *.inwx.de, *.inwx.at, *.inwx.ch, *.inwx.es",
+        status: "open",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "mindboost-app",
+        name: "mindboost",
+        description: "Web-based concentration improvement platform",
+        assets: "*.mindboost.app",
+        status: "paused",
+        notes: "No social engineering. No DDoS."
+},
+{
+        id: "beroomie-app",
+        name: "Beroomie",
+        description: "Housing and flatmate mobile application (staging domains only)",
+        assets: "*.beroomie.app",
+        status: "paused",
+        notes: "Only staging domains allowed. No social engineering. No DDoS."
+},
+{
+        id: "belgium-ip-cvd",
+        name: "Belgium Coordinated Vulnerability Disclosure",
+        description: "Belgium-assigned IP address ranges under CVD program",
+        assets: "Belgium IP ranges (CVD scope)",
+        status: "open",
+        notes: "Stick to Coordinated Vulnerability Disclosure (CVD). No social engineering. No DDoS."
+}
+
 ];
 
   
