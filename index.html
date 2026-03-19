@@ -252,7 +252,16 @@
     assets: "*.applicationdesigner.de, *.live-manager.de, 185.158.96.0/22",
     status: "active",
     notes: "Ethical hackers are welcome to search for vulnerabilities across all company-owned infrastructure, services, domains, applications, and systems including subsidiaries and brands of Questnet GmbH. No social engineering. No physical attacks. No denial-of-service (DoS/DDoS)."
-  },{
+  },
+   {
+        id: "zensocial",
+        name: "zensocial.app",
+        description: "social app",
+        assets: "zensocial.app",
+        status: "active",
+        notes: "No social engineering. No DDoS."
+},
+   {
   id: "elringklinger",
   name: "ElringKlinger AG",
   description: "German global automotive supplier specializing in e-mobility, sealing systems, lightweight components, and fuel cell technology",
@@ -441,7 +450,7 @@
 const REPORT_URL = "https://t.me/maiosec";
 
 /* PREMIUM PROGRAMS (sticky at top in this order) */
-const premiumOrder = ["questnet-gmbh"];
+const premiumOrder = ["questnet-gmbh", "zensocial"];
 
 /* Utility: shuffle array */
 function shuffle(array) {
