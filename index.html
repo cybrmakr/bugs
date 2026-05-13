@@ -277,6 +277,14 @@
     status: "active",
     notes: "Ethical hackers are welcome to search for vulnerabilities across all company-owned infrastructure, services, domains, applications, and systems including subsidiaries and brands of Questnet GmbH. No social engineering. No physical attacks. No denial-of-service (DoS/DDoS)."
   },
+   {
+  "id": "myphoner-test",
+  "name": "myphoner Test Environment",
+  "description": "Dedicated test/staging environment for myphoner development and security testing",
+  "assets": "Only the environment hosted at test.myphoner.dev",
+  "status": "open",
+  "notes": "Testing is authorized exclusively against test.myphoner.dev. All other myphoner systems, production environments, APIs, domains, infrastructure, customer accounts, and services are strictly out of scope. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not impact availability or integrity of the test environment. Accessing, modifying, or exposing real customer or production data is prohibited."
+},
 
    {
   "id": "heraeus",
@@ -578,7 +586,7 @@
 const REPORT_URL = "https://bugs-olivermaicher.atlassian.net/jira/software/form/563ad9fc-8e82-41f1-bab4-2396b07d47b9?atlOrigin=eyJpIjoiNDVjYjEwMGFkZmM0NGQ4NzkzMTYxMDQ4MThmOTllMTUiLCJwIjoiaiJ9";
 
 /* PREMIUM PROGRAMS (sticky at top in this order) */
-const premiumOrder = ["questnet-gmbh", "zensocial"];
+const premiumOrder = ["questnet-gmbh", "myphoner-test"];
 
 /* Utility: shuffle array */
 function shuffle(array) {
