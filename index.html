@@ -285,6 +285,14 @@
   "status": "paused",
   "notes": "Testing is authorized exclusively against test.myphoner.dev. All other myphoner systems, production environments, APIs, domains, infrastructure, customer accounts, and services are strictly out of scope. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not impact availability or integrity of the test environment. Accessing, modifying, or exposing real customer or production data is prohibited."
 },
+   {
+  "id": "basf",
+  "name": "BASF SE / BASF Group",
+  "description": "German multinational chemical company and one of the world's largest chemical producers",
+  "assets": "All company-owned infrastructure, corporate IT systems, research and development platforms, customer and supplier portals, APIs, cloud environments, websites, and domains operated by BASF Group and its subsidiaries",
+  "status": "open",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with production facilities, laboratory environments, supply chain operations, safety systems, or industrial control systems (ICS/OT). Access to or exposure of intellectual property, research data, customer information, supplier data, or employee information is strictly prohibited. Manufacturing systems, process control networks, and operational technology environments are out of scope. All activities must comply with applicable industrial safety, environmental, chemical industry, and data protection regulations."
+}
 
    {
   "id": "heraeus",
@@ -323,7 +331,7 @@
   "name": "Berliner Verkehrsbetriebe (BVG)",
   "description": "Public transport operator in Berlin providing U-Bahn, tram, bus, and ferry services",
   "assets": "All company-owned infrastructure, ticketing systems, mobile applications, APIs, customer platforms, websites, and digital services operated by BVG",
-  "status": "open",
+  "status": "paused",
   "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt public transport operations, safety systems, or passenger services. Interaction with operational technology (OT), signaling systems, vehicles, or critical infrastructure is strictly out of scope. Access to or exposure of passenger, employee, or payment data is prohibited. All activities must comply with German transport regulations and data protection laws."
 },
    {
@@ -375,13 +383,6 @@
     notes: "Ethical hackers are welcome to search for vulnerabilities across all company-owned infrastructure including subsidiaries and brands. No social engineering. No physical attacks. No denial-of-service (DoS/DDoS)."
 },
 {
-  "id": "thermondo",
-  "name": "thermondo GmbH",
-  "description": "German cleantech company specializing in heat pump installation, heating systems, and energy solutions",
-  "assets": "All company-owned infrastructure, customer platforms, internal systems, installation software, mobile applications, APIs, websites, and domains operated by thermondo GmbH",
-  "status": "open",
-  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with installation processes, financing systems, or customer accounts. Access to or exposure of customer energy, financial, or personal data is strictly prohibited. All activities must comply with German energy sector regulations and data protection laws."
-},{
   "id": "obi",
   "name": "OBI Group Holding SE & Co. KGaA",
   "description": "German multinational DIY and home improvement retail group operating stores and digital platforms across Europe",
@@ -509,14 +510,6 @@
   notes: "Security researchers are encouraged to responsibly disclose vulnerabilities in VP Bank-operated systems. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt financial services or access, modify, or expose client financial data. All activities must comply with applicable financial regulations and data protection laws in Liechtenstein and relevant jurisdictions."
 },
 {
-  id: "finanztip-gmbh",
-  name: "Finanztip Verbraucherinformation GmbH",
-  description: "German personal finance information platform",
-  assets: "All infrastructure, services and digital platforms operated by Finanztip",
-  status: "open",
-  notes: "Ethical hackers are welcome to search for vulnerabilities across all company-owned infrastructure including subsidiaries and brands. No social engineering. No physical attacks. No denial-of-service (DoS/DDoS)."
-},
-{
     "id": "peoplefone",
     "name": "peoplefone GmbH",
     "description": "European VoIP and cloud telephony provider for business communication",
@@ -549,16 +542,6 @@
     "notes": "Responsible disclosure is welcomed. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt telephony services or access/intercept customer communications. Activities must comply with applicable telecommunications and data protection laws."
   },
 
-
-{"id":"label-software","name":"Label Software Gerald Bax GmbH","description":"German provider of ERP software solutions for manufacturing and production companies","assets":"All company-owned infrastructure, ERP systems, production planning software, APIs, customer deployments (where permitted), web services, and domains operated by Label Software","status":"open","notes":"Responsible disclosure is encouraged. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt customer production environments or access manufacturing data. Customer-hosted systems are out of scope unless explicitly authorized. All activities must comply with data protection and industrial security regulations."},
-{"id":"microtech","name":"microtech GmbH","description":"German provider of ERP and accounting software for SMEs","assets":"All company-owned infrastructure, ERP/accounting systems, APIs, cloud services, customer portals, and domains operated by microtech GmbH","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with financial systems or access customer accounting data. Exposure of financial or personal data is strictly prohibited. Compliance with financial and data protection regulations is required."},
-{"id":"hs-hamburger-software","name":"HS - Hamburger Software GmbH & Co. KG","description":"German provider of payroll, accounting, and ERP software solutions","assets":"All company-owned infrastructure, payroll systems, accounting platforms, APIs, customer portals, and domains operated by HS - Hamburger Software","status":"open","notes":"Responsible disclosure is encouraged. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with payroll processing or financial systems. Access to employee, salary, or financial data is strictly prohibited. All activities must comply with labor, financial, and data protection laws."},
-{"id":"scopevisio","name":"Scopevisio AG","description":"German provider of cloud-based ERP and business automation software","assets":"All company-owned infrastructure, cloud ERP platforms, APIs, SaaS environments, customer portals, mobile/web applications, and domains operated by Scopevisio AG","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not impact availability of cloud services or access tenant data. Cross-tenant access, data extraction, or privilege escalation affecting customer data is strictly prohibited. Compliance with GDPR and SaaS security best practices is required."},
-{"id":"rexx","name":"rexx systems GmbH","description":"German provider of HR software and talent management SaaS solutions","assets":"All company-owned infrastructure, HR platforms, recruiting systems, APIs, SaaS environments, customer portals, and domains operated by rexx systems","status":"open","notes":"Responsible disclosure is encouraged. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not access or expose employee or applicant data. HR systems containing sensitive personal data are strictly protected. All activities must comply with GDPR and employment data protection laws."},
-{"id":"gfos","name":"GFOS mbH","description":"German provider of workforce management and HR SaaS solutions","assets":"All company-owned infrastructure, workforce management systems, time tracking platforms, APIs, SaaS environments, customer portals, and domains operated by GFOS mbH","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with workforce operations or access employee data. Exposure of personal or employment-related data is strictly prohibited. Compliance with GDPR and labor regulations is required."},
-{"id":"tisoware","name":"tisoware Gesellschaft für Zeitwirtschaft mbH","description":"German provider of HR, time tracking, and workforce management software","assets":"All company-owned infrastructure, time tracking systems, HR platforms, APIs, customer portals, SaaS environments, and domains operated by tisoware","status":"open","notes":"Responsible disclosure is encouraged. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with time tracking or HR systems. Access to employee data or working time records is strictly prohibited. All activities must comply with GDPR and employment regulations."},
-{"id":"infoniqa","name":"Infoniqa Holding GmbH","description":"European provider of payroll, HR, and finance SaaS solutions","assets":"All company-owned infrastructure, payroll systems, HR platforms, finance SaaS solutions, APIs, cloud environments, customer portals, and domains operated by Infoniqa and its subsidiaries","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with payroll, HR, or financial systems. Access to or exposure of salary, tax, or personal employee data is strictly prohibited. All activities must comply with GDPR and financial regulations."}
- ,  
 {"id":"roobet","name":"Roobet","description":"Online cryptocurrency casino platform offering games such as slots, blackjack, and sports betting","assets":"All company-owned infrastructure, gaming platforms, user accounts, wallets, APIs, mobile/web applications, and domains operated by Roobet","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not manipulate game outcomes, exploit provably fair systems, or interfere with betting processes. Access to or exposure of user accounts, wallet balances, or financial transactions is strictly prohibited. All activities must comply with applicable gambling and financial regulations."},
 {"id":"stake","name":"Stake","description":"Cryptocurrency-based online casino and sports betting platform","assets":"All company-owned infrastructure, betting systems, wallets, APIs, mobile/web platforms, user accounts, and domains operated by Stake","status":"open","notes":"Responsible disclosure is encouraged. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not manipulate betting systems, game outcomes, or financial transactions. Access to or exposure of user funds, accounts, or sensitive data is strictly prohibited. All activities must comply with applicable gambling and financial regulations."},
 {"id":"gamdom","name":"Gamdom","description":"Online crypto casino platform offering gaming and betting services","assets":"All company-owned infrastructure, gaming engines, wallets, APIs, user accounts, web/mobile applications, and domains operated by Gamdom","status":"open","notes":"Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with game fairness, betting systems, or financial transactions. Access to or exposure of user funds, accounts, or personal data is prohibited. Compliance with applicable gambling and financial regulations is required."},
