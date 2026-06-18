@@ -280,15 +280,22 @@ const programs = [
   "name": "Cineplex Deutschland GmbH & Co. KG / Cineplex Group",
   "description": "German cinema group and cinema network operator providing ticketing, loyalty, mobile, and digital entertainment services",
   "assets": "All company-owned infrastructure, websites, ticketing systems, mobile applications, APIs, customer portals, loyalty platforms, digital signage systems, and domains operated by Cineplex Deutschland GmbH & Co. KG and participating Cineplex entities under its control",
-  "status": "open",
+  "status": "active",
   "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt cinema operations, ticket sales, payment processing, or customer services. Access to or exposure of customer, employee, payment, or loyalty-program data is strictly prohibited. Point-of-sale systems, theater projection systems, building automation systems, and other operational technology are out of scope. All activities must comply with applicable data protection and consumer protection regulations."
 },{
   "id": "onecode",
   "name": "OneCode GmbH",
   "description": "German software development company providing mobile app development, backend engineering, DevOps, and custom software solutions",
   "assets": "All company-owned infrastructure, web applications, APIs, development platforms, cloud environments, customer portals, websites, and domains operated by OneCode GmbH",
-  "status": "open",
+  "status": "active",
   "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. Testing is limited to systems owned and operated by OneCode GmbH. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Customer-owned applications, customer infrastructure, and third-party environments are out of scope unless explicitly authorized. Access to or exposure of customer, employee, or proprietary development data is strictly prohibited. All activities must comply with applicable data protection and information security regulations."
+},{
+  "id": "hypofriend",
+  "name": "Hypofriend GmbH",
+  "description": "German digital mortgage broker and financial technology company providing mortgage comparison, financing advice, property search, pension, and investment services",
+  "assets": "All company-owned infrastructure, mortgage platforms, financial recommendation engines, customer portals, APIs, mobile and web applications, websites, and domains operated by Hypofriend GmbH and its affiliated brands",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with mortgage applications, financing processes, lender integrations, customer accounts, or financial transactions. Access to or exposure of personal, financial, mortgage, pension, investment, or authentication data is strictly prohibited. Third-party systems operated by banks, lenders, insurers, or real-estate partners are out of scope. All activities must comply with applicable financial regulations, GDPR, and data protection laws."
 },{
   "id": "kassenkompass",
   "name": "KassenKompass GmbH",
@@ -313,14 +320,14 @@ const programs = [
 },
 {
   id: "heraeus",
-  status: "active",
+  status: "open",
   name: "Heraeus Holding GmbH / Heraeus Group",
   description: "German multinational technology group specializing in precious metals, materials, medical technology, and industrial solutions",
   assets: "All company-owned infrastructure, corporate IT systems, R&D platforms, production-related IT (non-OT), supply chain systems, customer platforms, APIs, websites, and domains operated by Heraeus Group and all subsidiaries"
 },
 {
   id: "julius-baer",
-  status: "active",
+  status: "open",
   name: "Julius Bär Group Ltd.",
   description: "Swiss private banking group specializing in wealth management and investment advisory services",
   assets: "All company-owned infrastructure, online banking platforms, mobile applications, APIs, client portals, internal systems, and domains operated by Julius Bär Group and its subsidiaries"
@@ -376,7 +383,7 @@ const programs = [
 },
 {
   id: "thieme",
-  status: "open",
+  status: "paused",
   name: "Georg Thieme Verlag KG / Thieme Gruppe",
   description: "German multinational medical and scientific publishing and digital health services group",
   assets: "All company-owned infrastructure, publishing platforms, e-learning systems, medical databases, clinical decision support tools, mobile applications, APIs, websites, and domains operated by Thieme Gruppe and all subsidiaries"
@@ -411,7 +418,7 @@ const programs = [
 },
 {
   id: "man-traton",
-  status: "open",
+  status: "paused",
   name: "MAN Truck & Bus SE / TRATON SE",
   description: "Commercial vehicle manufacturer and holding company (TRATON Group)",
   assets: "All company-owned infrastructure, systems, digital services and brands of TRATON Group including MAN"
@@ -561,7 +568,7 @@ const programs = [
 const REPORT_URL = "https://bugs-olivermaicher.atlassian.net/jira/software/form/563ad9fc-8e82-41f1-bab4-2396b07d47b9?atlOrigin=eyJpIjoiNDVjYjEwMGFkZmM0NGQ4NzkzMTYxMDQ4MThmOTllMTUiLCJwIjoiaiJ9";
 
 /* PREMIUM PROGRAMS (sticky at top in this order) */
-const premiumOrder = ["questnet-gmbh"];
+const premiumOrder = ["questnet-gmbh","jtl","cineplex", "onecode"];
 
 /* Utility: shuffle array */
 function shuffle(array) {
