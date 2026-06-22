@@ -304,6 +304,13 @@ const programs = [
   "status": "active",
   "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with mortgage applications, financing processes, lender integrations, customer accounts, or financial transactions. Access to or exposure of personal, financial, mortgage, pension, investment, or authentication data is strictly prohibited. Third-party systems operated by banks, lenders, insurers, or real-estate partners are out of scope. All activities must comply with applicable financial regulations, GDPR, and data protection laws."
 },{
+  "id": "derdack",
+  "name": "Derdack GmbH / Derdack Group",
+  "description": "German software company providing mobile alerting, incident response, and enterprise notification solutions",
+  "assets": "All company-owned infrastructure, websites, APIs, SaaS platforms, mobile applications, backend systems, status pages, and domains operated by Derdack GmbH and its products, including SIGNL4 and Enterprise Alert",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. Scope includes Derdack-operated assets and products such as SIGNL4 and Enterprise Alert. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with alerting, incident response, on-call routing, or customer operations. Access to or exposure of customer alerts, incident data, credentials, contact lists, integrations, or tenant data is strictly prohibited. Customer-managed deployments, on-premise installations, and third-party integrations are out of scope unless explicitly authorized by Derdack. All activities must comply with applicable data protection and information security regulations."
+},{
   "id": "kassenkompass",
   "name": "KassenKompass GmbH",
   "description": "German health insurance comparison and switching platform for statutory health insurance providers",
@@ -575,7 +582,7 @@ const programs = [
 const REPORT_URL = "https://bugs-olivermaicher.atlassian.net/jira/software/form/563ad9fc-8e82-41f1-bab4-2396b07d47b9?atlOrigin=eyJpIjoiNDVjYjEwMGFkZmM0NGQ4NzkzMTYxMDQ4MThmOTllMTUiLCJwIjoiaiJ9";
 
 /* PREMIUM PROGRAMS (sticky at top in this order) */
-const premiumOrder = ["questnet-gmbh","jtl","cineplex", "onecode", "prioneer"];
+const premiumOrder = ["questnet-gmbh","jtl","cineplex", "onecode", "prioneer","derdack"];
 
 /* Utility: shuffle array */
 function shuffle(array) {
