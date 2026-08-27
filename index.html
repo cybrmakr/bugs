@@ -1,0 +1,765 @@
+s<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maicher Bug Bounty Hub</title>
+
+<style>
+  /* === brand style === */
+  :root {
+    --bg: #0b0f14;
+    --panel: #111620;
+    --text: #e8eef6;
+    --muted: #b2c2d6;
+    --brand: #7c5cff;
+    --brand-2: #00d1b2;
+    --accent: #ffb454;
+    --danger: #ff5d5d;
+    --ok: #36d399;
+    --focus: #5ad1ff;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+    --maxw: 1100px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #0b0f14;
+      --panel: #111620;
+      --text: #e8eef6;
+      --muted: #b2c2d6;
+      --brand: #7c5cff;
+      --brand-2: #00d1b2;
+      --accent: #ffb454;
+      --danger: #ff5d5d;
+      --ok: #36d399;
+      --focus: #5ad1ff;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --shadow-sm: 0 6px 16px rgba(0, 0, 0, .25);
+      --maxw: 1100px;
+    }
+  }
+
+  html,body { height:100%; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, var(--bg), #0b0f14 60%);
+    color: var(--text);
+  }
+  a { color:var(--brand); text-decoration:none; }
+  a:hover{ opacity:.95; }
+  .container { max-width:var(--maxw); margin:0 auto; padding:20px; }
+  header{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter: saturate(140%) blur(12px);
+    background: color-mix(in hsl, var(--bg), transparent 35%);
+    border-bottom:1px solid color-mix(in hsl, var(--muted), transparent 70%);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 20px; }
+  .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px; }
+  .logo{ width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:var(--shadow-sm); }
+  .nav a{ padding:8px 12px; border-radius:999px; font-weight:600; color:var(--text); opacity:.9; }
+  .cta{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff !important; box-shadow:var(--shadow-sm); }
+
+  .hero{ display:grid; gap:10px; padding:30px 0 8px; text-align:center; }
+  .hero h1{ font-size:clamp(28px,5vw,40px); margin:0; }
+  .hero p{ color:var(--muted); margin:0; font-size:16px; }
+  .actions{ display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+  .btn{ border:0; border-radius:999px; padding:10px 16px; font-weight:700; cursor:pointer; background:var(--panel); color:var(--text); box-shadow:var(--shadow-sm); }
+  .btn:hover{ transform:translateY(-1px); }
+  .card{ background:var(--panel); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
+  .grid{ display:grid; gap:14px; margin-top:26px; }
+  @media(min-width:900px){ .grid{ grid-template-columns: repeat(2,1fr); } }
+
+  /* Company card */
+  .program {
+    display:flex; gap:14px; align-items:flex-start; padding:14px; border-radius:12px;
+  }
+  .avatar {
+    width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff;
+  }
+  .prog-body { flex:1; min-width:0; }
+  .prog-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+  .prog-title { font-size:18px; margin:0; }
+  .prog-sub { color:var(--muted); font-size:13px; margin-top:4px; }
+
+  .small { padding:8px 10px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; border:0; background:transparent; color:var(--text); box-shadow:none; }
+  .outline { border:1px solid color-mix(in hsl,var(--muted), transparent 80%); }
+  .danger { background: linear-gradient(135deg,var(--danger),#ff7b7b); color:#fff; box-shadow:var(--shadow-sm); }
+
+  .details { margin-top:10px; color:var(--muted); font-size:14px; display:none; }
+  .details.open { display:block; }
+
+  /* STATUS DOTS */
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .status-active { background: var(--ok); }
+  .status-open { background: var(--accent); }
+  .status-paused { background: var(--danger); }
+
+  .trust-box {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--panel);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .trust-box .ava img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+  }
+
+  .btn-notify {
+  display: inline-block;
+  padding: 12px 22px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff !important;
+  background: linear-gradient(135deg, var(--accent), var(--brand));
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-notify:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+
+  footer { text-align:center; color:var(--muted); margin:40px 0 20px; font-size:13px; }
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        Maicher Bug Bounty
+      </div>
+      <nav>
+        <a href="#how">How It Works</a>
+        <a href="#programs">Programs</a>
+        <a href="leaderbord.html">Hacker Leaderboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Maicher Bug Bounty</h1>
+      <p>Choose a program, read the scope, and report to Oliver Maicher.</p>
+      <p>(We're looking for impactful bugs!)</p>
+      <div class="actions">
+        <a href="#programs" class="btn">View Programs</a>
+        <a id="quick-report" class="btn" href="#" target="_blank" rel="noopener noreferrer">Quick Report</a>
+      </div>
+    </section>
+
+    <section id="how" class="card" style="margin-top:26px;">
+      <h2 style="margin:0 0 8px;">How It Works</h2>
+      <p style="margin:0;color:var(--muted);line-height:1.6;">
+        1️⃣ Pick a company’s program below.<br>
+        2️⃣ Check its allowed targets and short rules.<br>
+        3️⃣ Use VPN (Germany/EU), hunt and find impactful bugs.
+        4️⃣ Click <strong>Report</strong>, submission opens.<br> 
+        5️⃣ Add program name, vulnerability details, PoC, contact and payment details. Send. Done.
+        6️⃣ Wait. Due to time constrains status requests can not be addressed. If valid, you'll receive the payout.
+      </p>
+    </section>
+
+    <section id="programs" class="grid" aria-label="Partner Programs" style="margin-top:22px;">
+      <!-- Program cards populated by JS -->
+    </section>
+
+    <section class="card" style="text-align:center;margin-top:26px;">
+      <h3 style="margin:0 0 8px;">Get Notified About Updates</h3>
+      <p style="margin:0;color:var(--muted);line-height:1.6;">
+        Want to stay in the loop when new programs or changes go live?
+      </p>
+   <a 
+  href="https://mail.olivermaicher.eu" 
+  class="btn-notify"
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  🔔 Notify Me
+</a>
+
+    </section>
+
+    <section class="card" style="text-align:center;margin-top:26px;">
+      <h3 style="margin:0 0 8px;">Security Guidelines</h3>
+      <p style="margin:0;color:var(--muted);line-height:1.6;">
+        Only test authorized assets, avoid data extraction or DoS, preferably High and Critical vulnerabilities. All submitted reports remain confidential.
+      </p>
+    </section>
+
+    <div class="trust-box" id="about">
+        <!-- 
+
+      <div class="ava" aria-hidden="true">
+        <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher" />
+      </div>
+      <div>
+        <h3>Created by Oliver Maicher</h3>
+        <small>Fast responses and global security expertise tailored for you.</small>
+      </div>
+      -->
+
+      <div class="ava" aria-hidden="true">
+  <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Oliver Maicher">
+</div>
+<div>
+  <h3>Created by Oliver Maicher</h3>
+  <small>Fast responses and global security expertise tailored for you.</small>
+  
+  <!-- Social buttons -->
+  <div class="social-buttons" style="margin-top: 10px;">
+    <a href="https://www.linkedin.com/in/oliver-maicher/" target="_blank" style="margin-right: 10px; text-decoration: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px; vertical-align:middle;"> LinkedIn
+    </a>
+    <a href="https://t.me/maiosec" target="_blank" style="text-decoration: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width:24px; vertical-align:middle;"> Telegram
+    </a>
+  </div>
+</div>
+      
+    </div>
+
+    
+
+    <footer>
+        <small>Submit responsibly. Sensitive data should be shared encrypted.</small>
+        <br><br>
+        Private Bug Bounty • Created by <strong>Oliver Maicher</strong>.
+        <br>
+        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/impressum.html">Impressum</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://burp.olivermaicher.eu/datenschutz.html">Datenschutz</a>
+    </footer>
+  </main>
+
+<script>
+
+    /*
+{
+        id: "",
+        name: "",
+        description: "",
+        assets: "",
+        status: "",
+        notes: "No social engineering. No DDoS."
+},
+
+*/
+const programs = [
+{
+  id: "questnet-gmbh",
+  status: "active",
+  name: "Questnet GmbH",
+  description: "IP infrastructure and web applications",
+  assets: "*.applicationdesigner.de, *.live-manager.de, 185.158.96.0/22"
+},{
+  "id": "cineplex",
+  "name": "Cineplex Deutschland GmbH & Co. KG / Cineplex Group",
+  "description": "German cinema group and cinema network operator providing ticketing, loyalty, mobile, and digital entertainment services",
+  "assets": "All company-owned infrastructure, websites, ticketing systems, mobile applications, APIs, customer portals, loyalty platforms, digital signage systems, and domains operated by Cineplex Deutschland GmbH & Co. KG and participating Cineplex entities under its control",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt cinema operations, ticket sales, payment processing, or customer services. Access to or exposure of customer, employee, payment, or loyalty-program data is strictly prohibited. Point-of-sale systems, theater projection systems, building automation systems, and other operational technology are out of scope. All activities must comply with applicable data protection and consumer protection regulations."
+},{
+  "id": "onecode",
+  "name": "OneCode GmbH",
+  "description": "German software development company providing mobile app development, backend engineering, DevOps, and custom software solutions",
+  "assets": "All company-owned infrastructure, web applications, APIs, development platforms, cloud environments, customer portals, websites, and domains operated by OneCode GmbH",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. Testing is limited to systems owned and operated by OneCode GmbH. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Customer-owned applications, customer infrastructure, and third-party environments are out of scope unless explicitly authorized. Access to or exposure of customer, employee, or proprietary development data is strictly prohibited. All activities must comply with applicable data protection and information security regulations."
+},{
+  "id": "prioneer",
+  "name": "Prioneer.io (Impactperfect GmbH)",
+  "description": "German SaaS platform providing prioritization and decision-making tools based on pairwise comparison and group ranking methodologies",
+  "assets": "All company-owned infrastructure, SaaS platform (prioneer.io), web applications, APIs, backend services, authentication systems, customer data systems, and all domains operated by Prioneer.io / Impactperfect GmbH",
+  "status": "paused",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not disrupt platform availability or interfere with user decision-making processes. Access to or exposure of customer data, voting inputs, or organizational decision datasets is strictly prohibited. Multi-tenant isolation must not be bypassed. All activities must comply with GDPR and applicable data protection regulations."
+},{
+  "id": "hypofriend",
+  "name": "Hypofriend GmbH",
+  "description": "German digital mortgage broker and financial technology company providing mortgage comparison, financing advice, property search, pension, and investment services",
+  "assets": "All company-owned infrastructure, mortgage platforms, financial recommendation engines, customer portals, APIs, mobile and web applications, websites, and domains operated by Hypofriend GmbH and its affiliated brands",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with mortgage applications, financing processes, lender integrations, customer accounts, or financial transactions. Access to or exposure of personal, financial, mortgage, pension, investment, or authentication data is strictly prohibited. Third-party systems operated by banks, lenders, insurers, or real-estate partners are out of scope. All activities must comply with applicable financial regulations, GDPR, and data protection laws."
+},{
+  "id": "derdack",
+  "name": "Derdack GmbH / Derdack Group",
+  "description": "German software company providing mobile alerting, incident response, and enterprise notification solutions",
+  "assets": "All company-owned infrastructure, websites, APIs, SaaS platforms, mobile applications, backend systems, status pages, and domains operated by Derdack GmbH and its products, including SIGNL4 and Enterprise Alert",
+  "status": "active",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. Scope includes Derdack-operated assets and products such as SIGNL4 and Enterprise Alert. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with alerting, incident response, on-call routing, or customer operations. Access to or exposure of customer alerts, incident data, credentials, contact lists, integrations, or tenant data is strictly prohibited. Customer-managed deployments, on-premise installations, and third-party integrations are out of scope unless explicitly authorized by Derdack. All activities must comply with applicable data protection and information security regulations."
+},{
+  "id": "kassenkompass",
+  "name": "KassenKompass GmbH",
+  "description": "German health insurance comparison and switching platform for statutory health insurance providers",
+  "assets": "All company-owned infrastructure, comparison platforms, customer portals, APIs, websites, mobile applications, and domains operated by KassenKompass GmbH",
+  "status": "open",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with health insurance switching processes, insurer integrations, or customer services. Access to or exposure of personal, health-related, insurance, or financial data is strictly prohibited. Third-party systems operated by partner health insurers are out of scope. All activities must comply with GDPR, insurance regulations, and applicable data protection laws."
+},{
+  "id": "alfaview",
+  "name": "alfaview gmbh",
+  "description": "German video conferencing and virtual collaboration software provider offering desktop, web, and mobile communication platforms",
+  "assets": "All company-owned infrastructure, alfaview web and desktop applications, mobile applications, APIs, backend systems, support systems, customer portals, websites, and domains operated by alfaview gmbh, including alfaview.com and company-operated subdomains",
+  "status": "open",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with video conferencing availability, meeting functionality, room access, or customer communications. Access to or exposure of customer accounts, authentication data, video/audio/chat content, uploaded files, support data, or tenant data is strictly prohibited. Attempts to access conferences, bypass room controls, intercept communications, or impact live customer sessions are out of scope. Customer-managed environments and third-party integrations are excluded unless explicitly authorized by alfaview. All activities must comply with GDPR and applicable data protection and telecommunications regulations."
+},{
+  id: "myphoner-test",
+  status: "paused",
+  name: "myphoner Test Environment",
+  description: "Dedicated test/staging environment for myphoner development and security testing",
+  assets: "Only the environment hosted at test.myphoner.dev"
+},
+{
+  id: "basf",
+  status: "open",
+  name: "BASF SE / BASF Group",
+  description: "German multinational chemical company and one of the world's largest chemical producers",
+  assets: "All company-owned infrastructure, corporate IT systems, research and development platforms, customer and supplier portals, APIs, cloud environments, websites, and domains operated by BASF Group and its subsidiaries"
+},
+{
+  id: "heraeus",
+  status: "paused",
+  name: "Heraeus Holding GmbH / Heraeus Group",
+  description: "German multinational technology group specializing in precious metals, materials, medical technology, and industrial solutions",
+  assets: "All company-owned infrastructure, corporate IT systems, R&D platforms, production-related IT (non-OT), supply chain systems, customer platforms, APIs, websites, and domains operated by Heraeus Group and all subsidiaries"
+},
+{
+  id: "caixabank",
+  status: "paused",
+  name: "CaixaBank, S.A.",
+  description: "Spanish multinational financial services company providing retail banking, corporate banking, and digital financial services",
+  assets: "All company-owned infrastructure, online banking platforms, mobile applications, APIs, payment systems, customer portals, internal systems, and domains operated by CaixaBank and its subsidiaries"
+},
+{
+  id: "suedzucker",
+  status: "open",
+  name: "Südzucker AG / Südzucker Group",
+  description: "German multinational food and agribusiness group specializing in sugar, food ingredients, bioethanol, starch, and fruit products",
+  assets: "All company-owned infrastructure, production systems, supply chain systems, enterprise IT, customer and partner platforms, APIs, websites, and domains operated by Südzucker Group and its subsidiaries"
+},
+{
+  id: "bvg",
+  status: "paused",
+  name: "Berliner Verkehrsbetriebe (BVG)",
+  description: "Public transport operator in Berlin providing U-Bahn, tram, bus, and ferry services",
+  assets: "All company-owned infrastructure, ticketing systems, mobile applications, APIs, customer platforms, websites, and digital services operated by BVG"
+},
+{
+  id: "zensocial",
+  status: "paused",
+  name: "zensocial.app",
+  description: "social app",
+  assets: "zensocial.app"
+},
+{
+  id: "xserver",
+  status: "paused",
+  name: "XServer Inc. (XServer / XServer Registry)",
+  description: "Japanese internet infrastructure provider offering domain registration, hosting, and cloud services",
+  assets: "All company-owned infrastructure, domain registry systems, DNS services, hosting platforms, cloud infrastructure, APIs, customer portals, and domains operated by XServer Inc."
+},
+{
+  id: "jtl",
+  status: "active",
+  name: "JTL-Software AG",
+  description: "German software company providing e-commerce ERP, shop systems, and multichannel retail solutions",
+  assets: "All company-owned infrastructure, ERP systems (JTL-Wawi), shop platforms (JTL-Shop), POS systems (JTL-POS), APIs, cloud services, customer portals, websites, and domains operated by JTL-Software AG"
+},
+{
+  id: "embraer",
+  status: "paused",
+  name: "Embraer S.A.",
+  description: "Brazilian multinational aerospace manufacturer producing commercial, executive, military aircraft, and aviation systems",
+  assets: "All company-owned infrastructure, engineering systems, aviation software, avionics-related digital services, corporate IT systems, APIs, customer portals, maintenance platforms, websites, and domains operated by Embraer and its subsidiaries"
+},
+{
+  id: "thieme",
+  status: "paused",
+  name: "Georg Thieme Verlag KG / Thieme Gruppe",
+  description: "German multinational medical and scientific publishing and digital health services group",
+  assets: "All company-owned infrastructure, publishing platforms, e-learning systems, medical databases, clinical decision support tools, mobile applications, APIs, websites, and domains operated by Thieme Gruppe and all subsidiaries"
+},
+{
+  id: "elringklinger",
+  status: "open",
+  name: "ElringKlinger AG",
+  description: "German global automotive supplier specializing in e-mobility, sealing systems, lightweight components, and fuel cell technology",
+  assets: "All company-owned infrastructure, services, domains, applications, and systems including subsidiaries and brands of ElringKlinger Group"
+},
+{
+  id: "obi",
+  status: "open",
+  name: "OBI Group Holding SE & Co. KGaA",
+  description: "German multinational DIY and home improvement retail group operating stores and digital platforms across Europe",
+  assets: "All company-owned infrastructure, retail systems, e-commerce platforms, mobile applications, APIs, supply chain systems, customer accounts, and domains operated by OBI Group and its subsidiaries"
+},
+{
+  id: "hornbach",
+  status: "open",
+  name: "HORNBACH Holding AG & Co. KGaA / HORNBACH Group",
+  description: "German multinational DIY and home improvement retail group operating large-format stores and e-commerce platforms across Europe",
+  assets: "All company-owned infrastructure, retail systems, e-commerce platforms, mobile applications, APIs, supply chain and logistics systems, customer accounts, in-store digital systems, and domains operated by HORNBACH Group and its subsidiaries"
+},
+{
+  id: "barmer",
+  status: "paused",
+  name: "BARMER",
+  description: "German statutory health insurance provider (Gesetzliche Krankenkasse)",
+  assets: "All company-owned infrastructure, systems, digital services, mobile applications, websites, APIs, and domains operated by BARMER"
+},
+{
+  id: "man-traton",
+  status: "paused",
+  name: "MAN Truck & Bus SE / TRATON SE",
+  description: "Commercial vehicle manufacturer and holding company (TRATON Group)",
+  assets: "All company-owned infrastructure, systems, digital services and brands of TRATON Group including MAN"
+},
+{
+  id: "daimler-truck",
+  status: "open",
+  name: "Daimler Truck Holding AG",
+  description: "Global commercial vehicle manufacturer (Mercedes-Benz Trucks, Freightliner, FUSO, Western Star)",
+  assets: "All infrastructure, digital services, brands and subsidiaries operated by Daimler Truck Holding AG"
+},
+{
+  id: "betarena",
+  status: "paused",
+  name: "Betarena",
+  description: "Sports betting tips, statistics and prediction platform",
+  assets: "All infrastructure, services and digital platforms operated by Betarena"
+},
+{
+  id: "betsson",
+  status: "paused",
+  name: "Betsson AB",
+  description: "Online gambling operator (sportsbook and casino)",
+  assets: "All infrastructure, brands, platforms and services operated by Betsson AB"
+},
+{
+  id: "bwin",
+  status: "paused",
+  name: "bwin",
+  description: "Online sportsbook and casino brand owned by Entain plc",
+  assets: "All infrastructure and platforms associated with the bwin brand and its parent organization"
+},
+{
+  id: "betano",
+  status: "paused",
+  name: "Betano",
+  description: "Online sportsbook and gaming operator owned by Kaizen Gaming",
+  assets: "All infrastructure, brands and platforms operated by Kaizen Gaming including Betano"
+},
+{
+  id: "bet365",
+  status: "paused",
+  name: "bet365",
+  description: "International online sportsbook and gaming company",
+  assets: "All infrastructure, brands, systems and platforms operated by bet365 Group"
+},
+{
+  "id": "sumup",
+  "name": "SumUp Payments Limited / SumUp Group",
+  "description": "Global financial technology company providing payment terminals, point-of-sale systems, online payments, invoicing, business accounts, and merchant software",
+  "assets": "All company-owned infrastructure, payment platforms, merchant portals, APIs, mobile and web applications, point-of-sale systems, cloud services, websites, and domains operated by SumUp Group and its subsidiaries",
+  "status": "open",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with payment processing, merchant operations, financial transactions, or customer services. Access to or exposure of merchant, customer, payment card, financial, authentication, or transaction data is strictly prohibited. Third-party payment networks, banking partners, and merchant-operated systems are out of scope unless explicitly authorized. All activities must comply with applicable financial regulations, PCI DSS requirements, and data protection laws."
+  },
+  {
+  "id": "n26",
+  "name": "N26 Bank AG",
+  "description": "German digital bank providing retail banking, payments, savings, investments, and financial services through mobile and web platforms",
+  "assets": "All company-owned infrastructure, online banking platforms, mobile applications, APIs, customer portals, authentication systems, internal banking services, websites, and domains operated by N26 Bank AG and its subsidiaries",
+  "status": "open",
+  "notes": "Security researchers are encouraged to responsibly disclose vulnerabilities. No social engineering, no physical attacks, and no denial-of-service (DoS/DDoS) testing. Testing must not interfere with banking operations, payment processing, financial transactions, customer authentication, or fraud prevention systems. Access to or exposure of customer accounts, financial information, payment data, authentication credentials, or transaction records is strictly prohibited. Actions affecting account integrity, balances, transfers, cards, investments, or regulated banking services are out of scope. All activities must comply with applicable financial regulations, banking supervision requirements, and data protection laws."
+  },
+  {
+  id: "avatarux-studios",
+  status: "open",
+  name: "AvatarUX Studios",
+  description: "Online slot game developer for iGaming platforms",
+  assets: "Brands: Roobet, Stake, Gamdom, BetPanda, RainBet. All infrastructure, game services, APIs and systems operated by AvatarUX Studios and its distributed gaming integrations"
+},
+{
+  id: "ozoon-sportsbook-casino",
+  status: "open",
+  name: "Ozoon",
+  description: "Online sportsbook, casino and poker platform",
+  assets: "All infrastructure, brands, services and gaming platforms operated by Ozoon"
+},
+{
+  id: "sevdesk-gmbh",
+  status: "paused",
+  name: "sevDesk GmbH",
+  description: "Cloud-based office and accounting software",
+  assets: "All infrastructure, cloud services and software platforms operated by sevDesk GmbH"
+},
+{
+  id: "ipb",
+  status: "open",
+  name: "IPB Internet Provider in Berlin GmbH",
+  description: "German internet service provider, cloud operator, and data center provider based in Berlin",
+  assets: "All company-owned infrastructure including data centers (CarrierColo), networks, cloud platforms, hosting systems, VPN services, APIs, customer portals, and domains operated by IPB Internet Provider in Berlin GmbH"
+},
+{
+  id: "vp-bank-ag",
+  status: "open",
+  name: "VP Bank AG",
+  description: "Liechtenstein-based private bank specializing in wealth management and financial services",
+  assets: "All company-owned infrastructure, systems, online banking platforms, mobile applications, APIs, websites, and domains operated by VP Bank AG and its subsidiaries"
+},
+{
+  id: "peoplefone",
+  status: "open",
+  name: "peoplefone GmbH",
+  description: "European VoIP and cloud telephony provider for business communication",
+  assets: "All company-owned infrastructure, VoIP platforms, SIP services, PBX systems, APIs, customer portals, mobile and desktop applications, and domains operated by peoplefone GmbH and its group entities"
+},
+{
+  id: "sipgate",
+  status: "open",
+  name: "sipgate GmbH",
+  description: "German telecommunications provider offering VoIP, SIP trunking, and cloud telephony solutions",
+  assets: "All company-owned infrastructure, VoIP systems, SIP trunking platforms, APIs, mobile and web applications, customer dashboards, and domains operated by sipgate GmbH"
+},
+{
+  id: "easybell",
+  status: "open",
+  name: "easybell GmbH",
+  description: "German provider of internet, VoIP, and cloud telephony solutions for business and residential customers",
+  assets: "All company-owned infrastructure, DSL services, VoIP platforms, SIP systems, APIs, customer portals, applications, and domains operated by easybell GmbH"
+},
+{
+  id: "fonial",
+  status: "open",
+  name: "fonial GmbH",
+  description: "Cloud telephony and VoIP provider for small and medium-sized businesses in Germany",
+  assets: "All company-owned infrastructure, cloud PBX systems, VoIP services, SIP platforms, APIs, web applications, customer interfaces, and domains operated by fonial GmbH"
+},
+{
+  id: "roobet",
+  status: "open",
+  name: "Roobet",
+  description: "Online cryptocurrency casino platform offering games such as slots, blackjack, and sports betting",
+  assets: "All company-owned infrastructure, gaming platforms, user accounts, wallets, APIs, mobile/web applications, and domains operated by Roobet"
+},
+{
+  id: "stake",
+  status: "paused",
+  name: "Stake",
+  description: "Cryptocurrency-based online casino and sports betting platform",
+  assets: "All company-owned infrastructure, betting systems, wallets, APIs, mobile/web platforms, user accounts, and domains operated by Stake"
+},
+{
+  id: "gamdom",
+  status: "open",
+  name: "Gamdom",
+  description: "Online crypto casino platform offering gaming and betting services",
+  assets: "All company-owned infrastructure, gaming engines, wallets, APIs, user accounts, web/mobile applications, and domains operated by Gamdom"
+},
+{
+  id: "betpanda",
+  status: "open",
+  name: "BetPanda",
+  description: "Online cryptocurrency gambling platform offering casino games and betting services",
+  assets: "All company-owned infrastructure, betting platforms, gaming systems, wallets, APIs, user accounts, and domains operated by BetPanda"
+},
+{
+  id: "rainbet",
+  status: "open",
+  name: "RainBet",
+  description: "Online crypto casino platform offering betting and gaming services",
+  assets: "All company-owned infrastructure, gaming platforms, wallets, APIs, user systems, mobile/web applications, and domains operated by RainBet"
+}];
+
+  
+const REPORT_URL = "https://bugs-olivermaicher.atlassian.net/jira/software/form/563ad9fc-8e82-41f1-bab4-2396b07d47b9?atlOrigin=eyJpIjoiNDVjYjEwMGFkZmM0NGQ4NzkzMTYxMDQ4MThmOTllMTUiLCJwIjoiaiJ9";
+
+/* PREMIUM PROGRAMS (sticky at top in this order) */
+const premiumOrder = ["questnet-gmbh","jtl","cineplex", "onecode", "prioneer","derdack"];
+
+/* Utility: shuffle array */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+/* Split programs */
+const premiumPrograms = [];
+const activePrograms = [];
+const pausedPrograms = [];
+
+programs.forEach(p => {
+  if (premiumOrder.includes(p.id)) {
+    premiumPrograms.push(p);
+  } else if (p.status === "paused") {
+    pausedPrograms.push(p);
+  } else {
+    activePrograms.push(p);
+  }
+});
+
+/* Keep premium order fixed */
+premiumPrograms.sort((a, b) => premiumOrder.indexOf(a.id) - premiumOrder.indexOf(b.id));
+
+/* Randomize others except paused */
+shuffle(activePrograms);
+
+/* Final sorted list */
+const sortedPrograms = [
+  ...premiumPrograms,
+  ...activePrograms,
+  ...pausedPrograms
+];
+
+/* Render logic */
+const programsEl = document.getElementById("programs");
+const INITIAL_LOAD = 6;
+let showingAll = false;
+
+function renderPrograms(list) {
+  programsEl.innerHTML = "";
+
+  list.forEach(p => {
+    const wrap = document.createElement("div");
+    wrap.className = "card program";
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = p.name.split(" ").map(s=>s[0]).slice(0,2).join("").toUpperCase();
+
+    const body = document.createElement("div");
+    body.className = "prog-body";
+
+    const head = document.createElement("div");
+    head.className = "prog-head";
+
+    const titleDiv = document.createElement("div");
+
+    const title = document.createElement("h4");
+    title.className = "prog-title";
+    title.textContent = p.name;
+
+    const statusDiv = document.createElement("div");
+    statusDiv.style.fontSize = "13px";
+    statusDiv.style.marginTop = "4px";
+    statusDiv.style.color = "var(--muted)";
+
+    const dot = document.createElement("span");
+    dot.className = "status-dot status-" + p.status;
+
+    const text = document.createElement("span");
+    text.textContent = p.status.charAt(0).toUpperCase() + p.status.slice(1);
+
+    statusDiv.appendChild(dot);
+    statusDiv.appendChild(text);
+
+    const sub = document.createElement("div");
+    sub.className = "prog-sub";
+    sub.textContent = p.description;
+
+    titleDiv.appendChild(title);
+    titleDiv.appendChild(statusDiv);
+    titleDiv.appendChild(sub);
+
+    const details = document.createElement("div");
+    details.className = "details";
+    details.innerHTML = `
+      <div><strong>Assets:</strong> ${p.assets}</div>
+      <div style="margin-top:6px;"><strong>Notes:</strong> ${p.notes}</div>
+    `;
+
+    const detailsBtn = document.createElement("button");
+    detailsBtn.className = "small outline";
+    detailsBtn.textContent = "Details";
+    detailsBtn.onclick = () => {
+      details.classList.toggle("open");
+      detailsBtn.textContent = details.classList.contains("open") ? "Hide" : "Details";
+    };
+
+    const reportBtn = document.createElement("a");
+    reportBtn.className = "small danger";
+    reportBtn.href = REPORT_URL;
+    reportBtn.target = "_blank";
+    reportBtn.rel = "noopener noreferrer";
+    reportBtn.textContent = "Report";
+
+    const actions = document.createElement("div");
+    actions.appendChild(detailsBtn);
+    actions.appendChild(reportBtn);
+
+    head.appendChild(titleDiv);
+    head.appendChild(actions);
+    body.appendChild(head);
+    body.appendChild(details);
+
+    wrap.appendChild(avatar);
+    wrap.appendChild(body);
+    programsEl.appendChild(wrap);
+  });
+}
+
+/* Initial render */
+renderPrograms(sortedPrograms.slice(0, INITIAL_LOAD));
+
+/* See More button */
+if (sortedPrograms.length > INITIAL_LOAD) {
+  const seeMoreWrap = document.createElement("div");
+  seeMoreWrap.style.gridColumn = "1/-1";
+  seeMoreWrap.style.textAlign = "center";
+  seeMoreWrap.style.marginTop = "10px";
+
+  const seeMoreBtn = document.createElement("button");
+  seeMoreBtn.className = "btn";
+  seeMoreBtn.textContent = "See More Programs";
+
+  seeMoreBtn.onclick = () => {
+    if (!showingAll) {
+      renderPrograms(sortedPrograms);
+      seeMoreBtn.remove();
+      showingAll = true;
+    }
+  };
+
+  seeMoreWrap.appendChild(seeMoreBtn);
+  programsEl.after(seeMoreWrap);
+}
+
+/* Quick Report button now points to GitHub */
+const quickReportEl = document.getElementById("quick-report");
+if (quickReportEl) {
+  quickReportEl.href = REPORT_URL;
+}
+
+</script>
+
+
+</body>
+</html>
