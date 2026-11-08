@@ -1,22 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report a security issue</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    h1 { margin-bottom: .25rem; }
+    .note { background: #f4f4f4; padding: 1rem; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Report a security issue</h1>
+  <p>Use this form to report a vulnerability. Please include affected asset, steps to reproduce, and impact.</p>
+  <p class="note">
+    Do not include real personal data of third parties. For encrypted reports, use our
+    <a href="/pgp.asc">PGP key</a>. We acknowledge reports within X working days.
+    Our <a href="/policy.html">disclosure policy</a> explains scope and safe harbour.
+  </p>
+
+  <!-- the form appears here -->
+  <div id="zammad-feedback-form"></div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<button id="zammad-feedback-form">Feedback</button>
-
-<script id="zammad_form_script" src="https://report.olivermaicher.eu/assets/form/form.js"></script>
-
-<script>
-$(function() {
-  $('#zammad-feedback-form').ZammadForm({
-    messageTitle: 'Feedback Form',
-    messageSubmit: 'Submit',
-    messageThankYou: 'Thank you for your inquiry (#%s)! We\'ll contact you as soon as possible.',
-    modal: true,
-    attachmentSupport: true
+  <script id="zammad_form_script" src="https://report.olivermaicher.eu/assets/form/form.js"></script>
+  <script>
+  $(function() {
+    $('#zammad-feedback-form').ZammadForm({
+      messageTitle: 'Submission Form',
+      messageSubmit: 'Submit',
+      messageThankYou: 'Thank you for your submission (#%s)! We\'ll contact you as soon as possible.',
+      showTitle: true,
+      modal: false,
+      attachmentSupport: true
+    });
   });
-});
-</script>
-
+  </script>
+</body>
 </html>
-
-
-
