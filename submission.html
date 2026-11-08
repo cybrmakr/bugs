@@ -1,0 +1,22 @@
+<html>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<button id="zammad-feedback-form">Feedback</button>
+
+<script id="zammad_form_script" src="https://report.olivermaicher.eu/assets/form/form.js"></script>
+
+<script>
+$(function() {
+  $('#zammad-feedback-form').ZammadForm({
+    messageTitle: 'Feedback Form',
+    messageSubmit: 'Submit',
+    messageThankYou: 'Thank you for your inquiry (#%s)! We\'ll contact you as soon as possible.',
+    modal: true,
+    attachmentSupport: true
+  });
+});
+</script>
+
+</html>
+
+
+
