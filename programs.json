@@ -1,0 +1,91 @@
+[
+  {
+    "name": "TeamViewer",
+    "status": "open",
+    "reward": "€100 to €10,000",
+    "url": "https://yeswehack.com/programs/teamviewer-bounty-program",
+    "note": "Hosted on YesWeHack."
+  },
+  {
+    "name": "Alasco",
+    "status": "open",
+    "reward": "€50 to €1,000",
+    "url": "https://yeswehack.com/programs/alasco-gmbh-bug-bounty-program",
+    "note": "Hosted on YesWeHack."
+  },
+  {
+    "name": "K15t",
+    "status": "open",
+    "reward": "$100 to $1,500 per vulnerability",
+    "url": "https://bugcrowd.com/k15t",
+    "note": "Hosted on Bugcrowd."
+  },
+  {
+    "name": "Deutsche Telekom",
+    "status": "open",
+    "reward": "Depends on the size of the error and the portal; no amounts published",
+    "url": "https://www.telekom.com/en/about-us/data-privacy-and-security/hacking-and-testing/bug-bounty"
+  },
+  {
+    "name": "Porsche AG",
+    "status": "open",
+    "reward": "Policy mentions bounty approval and that rewards can be received; no amounts published",
+    "url": "https://hackerone.com/porsche/policy_versions",
+    "note": "Hosted on HackerOne."
+  },
+  {
+    "name": "N26",
+    "status": "invite-only",
+    "reward": "“Cash rewards” at N26’s discretion",
+    "url": "https://n26.com/en-de/bug-bounty-program",
+    "note": "Invite required on HackerOne."
+  },
+  {
+    "name": "SumUp",
+    "status": "invite-only",
+    "reward": "Bounty table on HackerOne",
+    "url": "https://www.sumup.com/bug-bounty-program/",
+    "note": "You need to get access first."
+  },
+  {
+    "name": "re:cap",
+    "status": "unverified",
+    "reward": "At re:cap’s discretion",
+    "url": "https://re-cap.com/vulnerability-disclosure",
+    "note": "Called a bug bounty, but no reward details seen. You must be able to invoice a German GmbH."
+  },
+  {
+    "name": "Axel Springer NMT",
+    "status": "open",
+    "reward": "Not checked",
+    "url": "https://www.intigriti.com/blog/news/axel-springer-nmt-public-bug-bounty-program",
+    "note": "Public bug bounty on Intigriti."
+  },
+  {
+    "name": "Contentful",
+    "status": "unverified",
+    "reward": "Pays financially; no amounts published",
+    "url": "https://www.contentful.com/de/help/bug-bounty-program/"
+  },
+  {
+    "name": "Shopware",
+    "status": "unverified",
+    "reward": "No reward terms seen",
+    "url": "https://shopware.com/en/contact/security-reporting",
+    "note": "Page is titled “Bug Bounty Program”."
+  },
+  {
+    "name": "paymenttools",
+    "status": "unverified",
+    "reward": "No details",
+    "url": "https://firebounty.com/243847-paymenttoolscom",
+    "note": "security.txt mentions a “Bug Bounty Program”."
+  },
+  {
+    "name": "JTL-Software",
+    "status": "unverified",
+    "reward": "Unknown",
+    "url": "https://www.jtl-software.de",
+    "note": "Main site only; no program page found yet."
+  }
+]
