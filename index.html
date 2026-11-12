@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oliver Maicher · Bug Programs</title>
+<meta name="description" content="A small, independent bug bounty and disclosure programs run by Oliver Maicher.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f8fa;--surface:#fff;--ink:#14202b;--muted:#56626e;--line:#dde2e8;--accent:#1f4e8c;--accent-ink:#fff;--ok:#1d7a46;--no:#8a5a00}
+:root[data-theme=dark]{--bg:#0e141b;--surface:#151d27;--ink:#e6ebf0;--muted:#9aa7b4;--line:#263140;--accent:#6fa3e8;--accent-ink:#0e141b;--ok:#5cc58a;--no:#e0b055}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "IBM Plex Sans",system-ui,sans-serif}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+header .wrap{display:flex;align-items:center;gap:1rem;height:3.75rem}
+.brand{font-weight:600;color:var(--ink);text-decoration:none;margin-right:auto}
+nav a{color:var(--muted);text-decoration:none;margin-right:1rem}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;font:inherit;font-weight:500;background:var(--accent);color:var(--accent-ink);border:0;border-radius:6px;padding:.55rem 1rem;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+section{padding:3rem 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(2rem,5vw,2.9rem);line-height:1.15;margin:0 0 1rem;letter-spacing:-.02em}
+h2{font-size:1.5rem;margin:0 0 1rem;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:1.5rem 0 .25rem}
+.lead{font-size:1.15rem;color:var(--muted);max-width:38rem}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.5rem}
+.box h3:first-child{margin-top:0}
+.box ul{padding-left:1.2rem;margin:.4rem 0}
+.check{display:flex;gap:.6rem;align-items:flex-start;margin:1.25rem 0}
+.check input{margin-top:.35rem;width:1.1rem;height:1.1rem}
+details{border-top:1px solid var(--line);padding:.9rem 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:500}
+details p{margin:.6rem 0 0;color:var(--muted)}
+.prog{display:grid;gap:.4rem;margin-bottom:1rem}
+.prog header{border:0;background:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.prog h3{margin:0}
+.tag{font-size:.85rem;font-weight:500;padding:.1rem .6rem;border-radius:99px;border:1px solid currentColor}
+.tag.open{color:var(--ok)}.tag.closed{color:var(--no)}
+dl{display:grid;grid-template-columns:6rem 1fr;gap:.3rem 1rem;margin:.5rem 0 1rem}
+dt{color:var(--muted)}dd{margin:0}
+footer{padding:2rem 0;color:var(--muted);font-size:.95rem}
+footer a{margin-right:1rem}
+[hidden]{display:none!important}
+.topbar{background:var(--accent);color:var(--accent-ink);font-size:.95rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:2.5rem;flex-wrap:wrap;padding-top:.3rem;padding-bottom:.3rem}
+.topbar a{color:var(--accent-ink);font-weight:600;text-decoration:none;border:1px solid currentColor;border-radius:6px;padding:.2rem .75rem}
+.topbar a:hover{background:var(--accent-ink);color:var(--accent)}
+.hero{display:flex;gap:2rem;align-items:center}
+.hero img{width:11rem;height:11rem;border-radius:50%;object-fit:cover;background:var(--surface);border:1px solid var(--line);flex:none}
+@media (max-width:40rem){.hero{flex-direction:column-reverse;align-items:flex-start}.hero img{width:8rem;height:8rem}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>You are on the bug bounty list of Oliver Maicher.</span><a href="https://olivermaicher.eu">Visit olivermaicher.eu</a></div></div>
+<header><div class="wrap">
+  <a class="brand" href="#top">Oliver Maicher</a>
+  <nav><a href="#programs">Programs</a><a href="#faq">FAQ</a></nav>
+  <button class="btn ghost" id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+  <a class="btn" href="https://report.olivermaicher.eu">Report a bug</a>
+</div></header>
+
+<main id="top">
+<section><div class="wrap">
+  <div class="hero"><div>
+  <h1>Bug bounty programs, collected in one place.</h1>
+  <p class="lead">A curated list of bug bounty and vulnerability disclosure programs, with scope and reward information as far as it is publicly available.</p>
+  <p class="lead">Read the terms, pick a program, and follow that program’s own policy. Reward details come from public pages and can change, so always check the source.</p>
+  <p><a class="btn" href="#programs">View programs</a></p>
+  </div>
+  <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Portrait of Oliver Maicher" width="176" height="176"></div>
+</div></section>
+
+<section id="programs"><div class="wrap">
+  <h2>Programs</h2>
+
+  <div id="gate" class="box">
+    <h3>Before you hunt</h3>
+    <p>Please read this each time you visit. Programs are shown after you accept.</p>
+    <h3>Terms</h3>
+    <ul>
+      <li>Test only assets listed as in scope for the specific program.</li>
+      <li>Do not access, change or delete data that isn’t yours. Stop as soon as you reach someone else’s data and tell me.</li>
+      <li>No denial of service, spam, physical attacks or social engineering.</li>
+      <li>Do not disclose findings publicly or to third parties without my written consent.</li>
+      <li>This is a small, personal program. Rules, scope and rewards differ from program to program. Nothing is guaranteed, including rewards and response times.</li>
+      <li>You act at your own risk. I accept no liability for anything you do, to the extent permitted by law.</li>
+    </ul>
+    <h3>How it works</h3>
+    <ul>
+      <li>Pick an open program and check its scope and reward.</li>
+      <li>Hunt within the rules above.</li>
+      <li>Send your report through <a href="https://report.olivermaicher.eu">report.olivermaicher.eu</a> with clear steps to reproduce.</li>
+      <li>Wait for a reply. It can take a while.</li>
+    </ul>
+    <label class="check"><input type="checkbox" id="ok"><span>I have read and accept the terms and how it works.</span></label>
+    <button class="btn" id="go" type="button" disabled>Show programs</button>
+  </div>
+
+  <div id="list" hidden></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>FAQ</h2>
+  <details><summary>Is this a big, professional program?</summary><p>No. It’s a small program I run myself. Things differ between projects and programs, nothing is guaranteed, and replies can take a while.</p></details>
+  <details><summary>What is in and out of scope?</summary><p>Each program lists its own in-scope assets. Anything not listed is out of scope. If you are unsure, ask before testing.</p></details>
+  <details><summary>What rewards can I expect?</summary><p>Each program states its reward range. Amounts, payout method and timing are decided case by case and are not guaranteed.</p></details>
+  <details><summary>How long until I hear back?</summary><p>I aim to reply, but I can’t promise a timeframe. Please be patient and don’t disclose before we’ve agreed on it.</p></details>
+  <details><summary>Am I protected if I follow the rules?</summary><p>If you act in good faith and within scope, I won’t pursue action against you. This is not legal advice, and I can’t bind third parties or authorities. I take no liability for what you do.</p></details>
+  <details><summary>Where do I send reports?</summary><p>Use <a href="https://report.olivermaicher.eu">report.olivermaicher.eu</a>.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a href="https://olivermaicher.eu/imprint.html">Imprint</a>
+  <a href="https://olivermaicher.eu/privacy.html">Privacy</a>
+  <a href="https://report.olivermaicher.eu">Report a bug</a>
+</div></footer>
+
+<script>
+const R="https://report.olivermaicher.eu";
+const $=id=>document.getElementById(id);
+const root=document.documentElement;
+$("theme").onclick=()=>{
+  const dark=root.dataset.theme==="dark";
+  root.dataset.theme=dark?"light":"dark";
+};
+$("ok").onchange=e=>{$("go").disabled=!e.target.checked};
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
+async function show(){
+  const box=$("list");box.replaceChildren();
+  try{
+    const r=await fetch("programs.json",{cache:"no-store"});
+    const data=await r.json();
+    if(!data.length){box.append(el("p","","No programs right now."));}
+    data.forEach(p=>{
+      const c=el("article","box prog");
+      const h=el("header");h.append(el("h3","",p.name),el("span","tag "+(p.status==="open"?"open":"closed"),p.status));
+      const d=el("dl");
+      [["Reward",p.reward||"–"],["Note",p.note||""]].filter(x=>x[1]).forEach(([k,v])=>{d.append(el("dt","",k),el("dd","",v))});
+      c.append(h,d);
+      if(/^https:\/\//.test(p.url||"")){
+        const a=el("a","btn","Open program page");
+        a.href=p.url;a.target="_blank";a.rel="noopener noreferrer";
+        c.append(a);
+      }
+      box.append(c);
+    });
+  }catch(e){box.append(el("p","","Programs could not be loaded. Please try again later."));}
+  $("gate").hidden=true;box.hidden=false;
+}
+$("go").onclick=show;
+</script>
+</body>
+</html>
