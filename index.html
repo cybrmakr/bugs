@@ -55,15 +55,21 @@ footer a{margin-right:1rem}
 .hero{display:flex;gap:2rem;align-items:center}
 .hero img{width:11rem;height:11rem;border-radius:50%;object-fit:cover;background:var(--surface);border:1px solid var(--line);flex:none}
 @media (max-width:40rem){.hero{flex-direction:column-reverse;align-items:flex-start}.hero img{width:8rem;height:8rem}}
+.cta{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.25rem 0 0}
+.sub{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2.5rem 0}
+.sub h2{margin-bottom:.5rem}
+.sub p{margin:0;color:var(--muted)}
+.btn.wa{background:#075E54;color:#fff;border:1px solid #075E54}
+.btn.wa:hover{background:#054a42}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span>You are on the bug bounty list of Oliver Maicher.</span><a href="https://olivermaicher.eu">Visit olivermaicher.eu</a></div></div>
+<div class="topbar"><div class="wrap"><span>You are on the bug bounty list of Oliver Maicher.</span><a href="https://olivermaicher.eu" target="_blank" rel="noopener noreferrer">Visit olivermaicher.eu</a></div></div>
 <header><div class="wrap">
   <a class="brand" href="#top">Oliver Maicher</a>
   <nav><a href="#programs">Programs</a><a href="#faq">FAQ</a></nav>
   <button class="btn ghost" id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
-  <a class="btn" href="https://report.olivermaicher.eu">Report a bug</a>
+  <a class="btn" href="https://report.olivermaicher.eu" target="_blank" rel="noopener noreferrer">Report a bug</a>
 </div></header>
 
 <main id="top">
@@ -72,7 +78,7 @@ footer a{margin-right:1rem}
   <h1>Bug bounty programs, collected in one place.</h1>
   <p class="lead">A curated list of bug bounty and vulnerability disclosure programs, with scope and reward information as far as it is publicly available.</p>
   <p class="lead">Read the terms, pick a program, and follow that program’s own policy. Reward details come from public pages and can change, so always check the source.</p>
-  <p><a class="btn" href="#programs">View programs</a></p>
+  <div class="cta"><a class="btn" href="#programs">View programs</a><a class="btn ghost" href="https://mail.olivermaicher.eu" target="_blank" rel="noopener noreferrer">Get announcements by email</a><a class="btn wa" href="https://whatsapp.com/channel/0029Vb9c7vmJf05Ukv606s45" target="_blank" rel="noopener noreferrer">Join WhatsApp channel</a></div>
   </div>
   <img src="https://cdn.bitrix24.de/b8437043/landing/a4d/a4d1dc21c4ac3efb26c2eaee1b4c233c/transparent_2x.png" alt="Portrait of Oliver Maicher" width="176" height="176"></div>
 </div></section>
@@ -96,7 +102,7 @@ footer a{margin-right:1rem}
     <ul>
       <li>Pick an open program and check its scope and reward.</li>
       <li>Hunt within the rules above.</li>
-      <li>Send your report through <a href="https://report.olivermaicher.eu">report.olivermaicher.eu</a> with clear steps to reproduce.</li>
+      <li>Send your report through <a href="https://report.olivermaicher.eu" target="_blank" rel="noopener noreferrer">report.olivermaicher.eu</a> with clear steps to reproduce.</li>
       <li>Wait for a reply. It can take a while.</li>
     </ul>
     <label class="check"><input type="checkbox" id="ok"><span>I have read and accept the terms and how it works.</span></label>
@@ -106,6 +112,12 @@ footer a{margin-right:1rem}
   <div id="list" hidden></div>
 </div></section>
 
+<div class="sub"><div class="wrap">
+  <h2>Don’t miss new programs</h2>
+  <p>New programs and changes are announced by email and in a WhatsApp channel.</p>
+  <div class="cta"><a class="btn" href="https://mail.olivermaicher.eu" target="_blank" rel="noopener noreferrer">Subscribe by email</a><a class="btn wa" href="https://whatsapp.com/channel/0029Vb9c7vmJf05Ukv606s45" target="_blank" rel="noopener noreferrer">Join WhatsApp channel</a></div>
+</div></div>
+
 <section id="faq"><div class="wrap">
   <h2>FAQ</h2>
   <details><summary>Is this a big, professional program?</summary><p>No. It’s a small program I run myself. Things differ between projects and programs, nothing is guaranteed, and replies can take a while.</p></details>
@@ -113,14 +125,16 @@ footer a{margin-right:1rem}
   <details><summary>What rewards can I expect?</summary><p>Each program states its reward range. Amounts, payout method and timing are decided case by case and are not guaranteed.</p></details>
   <details><summary>How long until I hear back?</summary><p>I aim to reply, but I can’t promise a timeframe. Please be patient and don’t disclose before we’ve agreed on it.</p></details>
   <details><summary>Am I protected if I follow the rules?</summary><p>If you act in good faith and within scope, I won’t pursue action against you. This is not legal advice, and I can’t bind third parties or authorities. I take no liability for what you do.</p></details>
-  <details><summary>Where do I send reports?</summary><p>Use <a href="https://report.olivermaicher.eu">report.olivermaicher.eu</a>.</p></details>
+  <details><summary>Where do I send reports?</summary><p>Use <a href="https://report.olivermaicher.eu" target="_blank" rel="noopener noreferrer">report.olivermaicher.eu</a>.</p></details>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <a href="https://olivermaicher.eu/imprint.html">Imprint</a>
-  <a href="https://olivermaicher.eu/privacy.html">Privacy</a>
-  <a href="https://report.olivermaicher.eu">Report a bug</a>
+  <a href="https://olivermaicher.eu/imprint.html" target="_blank" rel="noopener noreferrer">Imprint</a>
+  <a href="https://olivermaicher.eu/privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a>
+  <a href="https://report.olivermaicher.eu" target="_blank" rel="noopener noreferrer">Report a bug</a>
+  <a href="https://mail.olivermaicher.eu" target="_blank" rel="noopener noreferrer">Email announcements</a>
+  <a href="https://whatsapp.com/channel/0029Vb9c7vmJf05Ukv606s45" target="_blank" rel="noopener noreferrer">WhatsApp channel</a>
 </div></footer>
 
 <script>
